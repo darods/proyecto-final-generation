@@ -11,12 +11,16 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         // Obtener la entrada del jugador en los ejes horizontal y vertical
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         // Calcular la dirección de movimiento
-        Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0f) * moveSpeed * Time.deltaTime;
+        Vector3 movement = new Vector3(-moveHorizontal, 0f, -moveVertical) * moveSpeed * Time.deltaTime;
 
         // Mover el jugador
         transform.Translate(movement);
