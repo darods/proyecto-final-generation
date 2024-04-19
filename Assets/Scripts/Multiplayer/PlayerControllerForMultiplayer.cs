@@ -41,6 +41,8 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
     }
     private void MovePlayer()
     {
+
+        if(!GameManager.Instance.IsGamePlaying()) return;
         playerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         playerMovementInput.Normalize();
         transform.LookAt(transform.position + playerMovementInput);
@@ -52,6 +54,7 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
     }
     private void PlayerDash()
     {
+        
         if (Input.GetButtonDown("Dash") && !isDashing && playerMovementInput.magnitude > 0.1f)
         {
             _currentSpeed = _dashSpeed;
