@@ -10,13 +10,41 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button quitButton;
     private void Awake()
     {
-        playButton.onClick.AddListener(() =>
+
+        GameObject canvasControllerObject = GameObject.Find("CanvasController");
+
+        // Check if the GameObject was found
+        if (canvasControllerObject != null)
         {
-            Loader.Load(Loader.Scene.GameScene);
-        });
-        quitButton.onClick.AddListener(() =>
+            // Get the CanvasController component from the GameObject
+            CanvasController canvasController = canvasControllerObject.GetComponent<CanvasController>();
+
+            // Check if the CanvasController component was found
+            if (canvasController != null)
+            {
+                // Call the SwitchCanvas method from the CanvasController component
+                
+                playButton.onClick.AddListener(() =>
+                {
+                    canvasController.SwitchCanvas();
+                    //Loader.Load(Loader.Scene.GameScene);
+                });
+                quitButton.onClick.AddListener(() =>
+                {
+                    Application.Quit();
+                });
+
+            }
+            else
+            {
+                Debug.LogError("CanvasController component not found on GameObject named 'CanvasController'");
+            }
+        }
+        else
         {
-            Application.Quit();
-        });
+            Debug.LogError("GameObject named 'CanvasController' not found");
+        }
+
+        
     }
 }
