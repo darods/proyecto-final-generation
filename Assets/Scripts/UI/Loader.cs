@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public static class Loader
 {
 
     public enum Scene
     {
+        MultiplayerScene,
         MainMenuScene,
         GameScene,
         LoadingScene
@@ -22,6 +24,11 @@ public static class Loader
         SceneManager.LoadScene(Scene.LoadingScene.ToString());
 
     }
+    public static void LoadNetwork(Scene targetScene)
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(targetScene.ToString(), LoadSceneMode.Single);
+    }
+
 
     public static void LoaderCallback(){
         

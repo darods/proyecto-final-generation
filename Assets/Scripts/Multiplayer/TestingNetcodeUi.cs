@@ -11,15 +11,19 @@ public class TestingNetcodeUi : MonoBehaviour
 
     private void Awake() {
         startHostButton.onClick.AddListener(() => {
-            Debug.Log("HOST");
-            NetworkManager.Singleton.StartHost();
+            
             Hide();
+            //
+            AirplaneGameMultiplayer.Instance.StartHost();
+            Loader.LoadNetwork(Loader.Scene.GameScene);
         });
 
         startClientButton.onClick.AddListener(() => {
-            Debug.Log("CLIENT");
-            NetworkManager.Singleton.StartClient();
+            
             Hide();
+            //Loader.Load(Loader.Scene.MultiplayerScene);
+            AirplaneGameMultiplayer.Instance.StartClient();
+            Loader.LoadNetwork(Loader.Scene.GameScene);
         });
     }
 

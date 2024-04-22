@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 5562294025464064680}
   - component: {fileID: 5562294025464064681}
   - component: {fileID: 5562294025464064682}
+  - component: {fileID: 3034713142256886374}
+  - component: {fileID: -2432148028932397871}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -157,7 +159,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5562294025464064683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a6ad8d7cb680d4eb12c8efb09dc359, type: 3}
   m_Name: 
@@ -167,6 +169,39 @@ MonoBehaviour:
   _dashSpeed: 10
   _dashDuration: 0.2
   dashParticles: {fileID: 5562294025779446091}
+--- !u!114 &3034713142256886374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562294025464064683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &-2432148028932397871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562294025464064683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bcb6e248c8de04f8250d2253f4b139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+  _currentSpeed: 0
+  _dashSpeed: 10
+  _dashDuration: 0.2
+  dashParticles: {fileID: 0}
 --- !u!1 &5562294025776026360
 GameObject:
   m_ObjectHideFlags: 0

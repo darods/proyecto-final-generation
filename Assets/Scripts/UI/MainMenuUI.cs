@@ -27,7 +27,7 @@ public class MainMenuUI : MonoBehaviour
                 playButton.onClick.AddListener(() =>
                 {
                     canvasController.SwitchCanvas();
-                    //Loader.Load(Loader.Scene.GameScene);
+                    //Loader.Load(Loader.Scene.MultiplayerScene);
                 });
                 quitButton.onClick.AddListener(() =>
                 {
