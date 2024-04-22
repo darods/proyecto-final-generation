@@ -1,74 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class OrderManager : MonoBehaviour
 {
-    [SerializeField] private List<OrderSO> foodItems = new List<OrderSO>();
-    private Dictionary<int, Order> currentOrders = new Dictionary<int, Order>();
+    public static OrderManager Instance;
 
-    private bool canOrder = true;
+    [SerializeField] private int maxActiveOrders = 5;
+    private List<OrderSO> activeOrders = new List<OrderSO>();
 
-    private void Start()
+    [SerializeField] private OrderSO[] possibleOrders;
+
+    private void Awake()
     {
-        StartCoroutine(OrderRoutine());
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private IEnumerator OrderRoutine()
+    public bool CanMakeOrder()
     {
-        while (canOrder)
-        {
-            //Wait for a random time before processing next order
-            yield return new WaitForSeconds(Random.Range(5, 10));
+        return activeOrders.Count < maxActiveOrders;
+    }
 
-            if (currentOrders.Count < 10) //Limit to 10 orders
+    public bool TryCreateOrder(OrderSO order, Seat seat)
+    {
+        if (CanMakeOrder())
+        {
+            if (order == null)
             {
-                ProcessNewOrder();
+                order = possibleOrders[Random.Range(0, possibleOrders.Length)];
             }
+
+            activeOrders.Add(order);
+
+            return true;
         }
+        return false;
     }
 
-    private void ProcessNewOrder()
+    public void OrderCompletedOrCanceled(OrderSO order)
     {
-        int npcId = GetRandomNPCId();
-        OrderSO order = GetRandomOrder();
-
-        currentOrders.Add(npcId, new Order { OrderItem = order, TimePlaced = Time.time, IsFulfilled = false });
-
-        Debug.Log($"Order placed by NPC {npcId}: {order.itemName}");
+        activeOrders.Remove(order);
     }
 
-    private int GetRandomNPCId()
+    public OrderSO[] GetPossibleOrders()
     {
-        return Random.Range(1, 16);
+        return possibleOrders;
     }
-
-    private OrderSO GetRandomOrder()
-    {
-        return foodItems[Random.Range(0, foodItems.Count)];
-    }
-
-    private void Update()
-    {
-        var overdueOrders = currentOrders.Where(kvp => !kvp.Value.IsFulfilled && Time.time - kvp.Value.TimePlaced > 30).ToList();
-
-        foreach (var order in overdueOrders)
-        {
-            IncreaseNPCAnger(order.Key);
-            currentOrders.Remove(order.Key);
-        }
-    }
-
-    private void IncreaseNPCAnger(int npcId)
-    {
-        Debug.Log($"NPC {npcId} is angry due to late order!");
-    }
-}
-
-public class Order
-{
-    public OrderSO OrderItem;
-    public float TimePlaced;
-    public bool IsFulfilled;
 }
