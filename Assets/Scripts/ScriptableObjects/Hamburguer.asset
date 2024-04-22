@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec904bba07b440b4da1e0b1ee31b9ccd, type: 3}
   m_Name: Hamburguer
   m_EditorClassIdentifier: 
-  orderSprite: {fileID: 21300000, guid: c5a5d01f4e846694d8f89462ef4ba77b, type: 3}
-  itemName: hamburguer
+  orderName: hamburguer
+  orderSprite: {fileID: 2800000, guid: c5a5d01f4e846694d8f89462ef4ba77b, type: 3}
