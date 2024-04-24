@@ -13,8 +13,7 @@ public class GetObject : MonoBehaviour
 [Header("Interact Settings")]
 [Space]
     [SerializeField] private float interactRange = 2f;
-    [SerializeField] private LayerMask layerObject;
-    [SerializeField] private LayerMask layerSpawn;
+    [SerializeField] LayerMask layerObject;
     private int pickUpLayer, objectsLayer;
     private Rigidbody rbObject;
     private GameObject pickedObject = null;
@@ -44,25 +43,22 @@ public class GetObject : MonoBehaviour
         if (Input.GetButtonDown("TakeObject") ) {
             if (pickedObject == null){
                 RaycastHit _hit;
-                if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange))
+                if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange, layerObject))
                     {
+                        
                         GameObject gameObjectColision =  _hit.collider.gameObject;
-                        if (gameObjectColision.layer == layerObject)
-                        {
-                            
-                            PickUpObject(_hit.collider.gameObject);
-                        }
-                        else if (gameObjectColision.layer == layerSpawn)
-                        {
-                            
-                           if (gameObjectColision.TryGetComponent(out IInteractable interactObj)){
+                        if (gameObjectColision.TryGetComponent(out IInteractable interactObj)){
                                 GameObject spawn = interactObj.Interact();  
-                                PickUpObject(spawn);
-                           }
                                 
-                        }
+                                PickUpObject(spawn);
+
+                                return;
+                           }
+                        PickUpObject(_hit.collider.gameObject);
+                       
+                          
                     }
-                                        } else {
+            } else {
                 isHolding = true;
             }
         }    
@@ -81,7 +77,7 @@ public class GetObject : MonoBehaviour
     
 }
     private void PickUpObject (GameObject obj){
-            
+            Debug.Log(obj);
             rbObject = obj.GetComponent<Rigidbody>();
             
            
