@@ -4,7 +4,5 @@ using UnityEngine;
 public class OrderSO : ScriptableObject
 {
     [Header("Visual")]
-    public string orderName;
-
     public Texture orderSprite;
 }
