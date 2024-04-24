@@ -44,7 +44,6 @@ public class GetObject : MonoBehaviour
         if (Input.GetButtonDown("TakeObject") ) {
             if (pickedObject == null){
                 RaycastHit _hit;
-                
                 if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange))
                     {
                         GameObject gameObjectColision =  _hit.collider.gameObject;
@@ -61,12 +60,7 @@ public class GetObject : MonoBehaviour
                                 
                         }
                     }
-
-
-
-
-            } 
-            else {
+                                        } else {
                 isHolding = true;
             }
         }    
@@ -84,16 +78,6 @@ public class GetObject : MonoBehaviour
     }
     
 }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
     private void PickUpObject (RaycastHit _hit){
             
             rbObject = _hit.collider.gameObject.GetComponent<Rigidbody>();
@@ -102,9 +86,7 @@ public class GetObject : MonoBehaviour
             if (rbObject != null){
                 rbObject.useGravity = false;
                 rbObject.isKinematic = true;
-                
                 pickedObject = _hit.collider.gameObject;
-                
                 pickedObject.transform.SetParent(gameObject.transform);
                 pickedObject.layer = pickUpLayer;
                 pickedObject.transform.localPosition = offset;
