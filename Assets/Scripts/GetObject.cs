@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public interface IInteractable
+{    GameObject Interact();
+}
+
 public class GetObject : MonoBehaviour
 {
        
-    [Header("Interact Settings")]
-    [Space]
-        [SerializeField] private float interactRange = 2f;
-        [SerializeField] private LayerMask layerObject;
-        private int pickUpLayer, objectsLayer;
-        private Rigidbody rbObject;
-        private GameObject pickedObject = null;
-        private Vector3 offset;
+[Header("Interact Settings")]
+[Space]
+    [SerializeField] private float interactRange = 2f;
+    [SerializeField] private LayerMask layerObject;
+    [SerializeField] private LayerMask layerSpawn;
+    private int pickUpLayer, objectsLayer;
+    private Rigidbody rbObject;
+    private GameObject pickedObject = null;
+    private Vector3 offset;
 
-    [Header("Launch Settings")]
-        [SerializeField] private float launchForce = 4f;
-        [SerializeField] private float _maxLaunchTime = 4f;
-        private float _launchTimer = 0f;
+[Header("Launch Settings")]
+    [SerializeField] private float launchForce = 4f;
+    [SerializeField] private float _maxLaunchTime = 4f;
+    private float _launchTimer = 0f;
 
-        private bool isHolding = false;
+    private bool isHolding = false;
 
     private void Start() {
         pickUpLayer = LayerMask.NameToLayer("PickUpLayer");
@@ -38,11 +44,29 @@ public class GetObject : MonoBehaviour
         if (Input.GetButtonDown("TakeObject") ) {
             if (pickedObject == null){
                 RaycastHit _hit;
-                if ( Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange, layerObject))
-                {
-                    PickUpObject(_hit);
-                }
-            } else {
+                
+                if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange))
+                    {
+                        GameObject gameObjectColision =  _hit.collider.gameObject;
+                        if (gameObjectColision.layer == layerObject)
+                        {
+                            PickUpObject(_hit);
+                        }
+                        else if (gameObjectColision.layer == layerSpawn)
+                        {
+                            
+                           if (gameObjectColision.TryGetComponent(out IInteractable interactObj)){
+                                GameObject spawn = interactObj.Interact();  
+                           }
+                                
+                        }
+                    }
+
+
+
+
+            } 
+            else {
                 isHolding = true;
             }
         }    
@@ -60,10 +84,16 @@ public class GetObject : MonoBehaviour
     }
     
 }
-    
-           
-            
- 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     private void PickUpObject (RaycastHit _hit){
             
             rbObject = _hit.collider.gameObject.GetComponent<Rigidbody>();
