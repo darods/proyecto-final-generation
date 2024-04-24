@@ -7,8 +7,8 @@ public class ObjectSpawn : MonoBehaviour,IInteractable
 [SerializeField] OrderSO order;
   public GameObject Interact(){
     // posicion, rotacion 
-    // Instantiate(prefab, position, rotation);
-    GameObject spawnedObject = null;
+    
+    GameObject spawnedObject = Instantiate(order.prefab, transform.position, transform.rotation);
     return spawnedObject;
 
   }

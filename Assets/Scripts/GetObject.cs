@@ -49,13 +49,15 @@ public class GetObject : MonoBehaviour
                         GameObject gameObjectColision =  _hit.collider.gameObject;
                         if (gameObjectColision.layer == layerObject)
                         {
-                            PickUpObject(_hit);
+                            
+                            PickUpObject(_hit.collider.gameObject);
                         }
                         else if (gameObjectColision.layer == layerSpawn)
                         {
                             
                            if (gameObjectColision.TryGetComponent(out IInteractable interactObj)){
                                 GameObject spawn = interactObj.Interact();  
+                                PickUpObject(spawn);
                            }
                                 
                         }
@@ -78,15 +80,15 @@ public class GetObject : MonoBehaviour
     }
     
 }
-    private void PickUpObject (RaycastHit _hit){
+    private void PickUpObject (GameObject obj){
             
-            rbObject = _hit.collider.gameObject.GetComponent<Rigidbody>();
+            rbObject = obj.GetComponent<Rigidbody>();
             
            
             if (rbObject != null){
                 rbObject.useGravity = false;
                 rbObject.isKinematic = true;
-                pickedObject = _hit.collider.gameObject;
+                pickedObject = obj;
                 pickedObject.transform.SetParent(gameObject.transform);
                 pickedObject.layer = pickUpLayer;
                 pickedObject.transform.localPosition = offset;
