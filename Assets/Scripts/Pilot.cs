@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Pilot : Subject
 {
+    [SerializeField] private GameObject sleepingImage;
+
     private bool isAsleep = false;
     private Coroutine DelaySleepCoroutine;
     private Coroutine SleepingCoroutine;
@@ -20,7 +22,6 @@ public class Pilot : Subject
 
     private IEnumerator DelaySleep(float delay)
     {
-        Debug.Log("Delay");
         yield return new WaitForSeconds(delay);
         StartSleeping();
     }
@@ -33,6 +34,7 @@ public class Pilot : Subject
             StopCoroutine(SleepingCoroutine);
         }
         SleepingCoroutine = StartCoroutine(Sleep());
+        sleepingImage.SetActive(true);
         Debug.Log("Pilot has started sleeping");
     }
 
@@ -41,7 +43,6 @@ public class Pilot : Subject
 
         while (isAsleep)
         {
-            Debug.Log("Disminuir puntos");
             Notify(Actions.RemovePoints);
             yield return new WaitForSeconds(1);
         }
@@ -57,6 +58,7 @@ public class Pilot : Subject
                 StopCoroutine(SleepingCoroutine);
                 StartSleepDelay();
             }
+            sleepingImage.SetActive(false);
             Debug.Log("Pilot has been awakened");
         }
         else
