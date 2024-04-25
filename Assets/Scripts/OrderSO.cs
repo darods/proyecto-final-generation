@@ -4,7 +4,9 @@ using UnityEngine;
 public class OrderSO : ScriptableObject
 {
     [Header("Visual")]
-    public string orderName;
-
     public Texture orderSprite;
+    public GameObject prefab;
+    
+    public GameObject Prefab {get{ return prefab ; } }
+    public Texture OrderSprite {get{ return orderSprite ; } }
 }

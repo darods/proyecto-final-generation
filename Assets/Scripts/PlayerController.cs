@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [Space]
-        [SerializeField] private float _moveSpeed, _currentSpeed ;
+        [SerializeField] private float _moveSpeed, _currentSpeed, rotationSpeed ;
         private Rigidbody rb;
         private Vector3 playerMovementInput;
-    
+        
 
     [Header("Dash Settings")]
     [Space]
@@ -33,14 +33,19 @@ public class PlayerController : MonoBehaviour
         
     }
     private void MovePlayer (){
-        playerMovementInput= new Vector3 (Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        playerMovementInput.Normalize(); 
-        transform.LookAt(transform.position + playerMovementInput);
-        
-        // Vector3 moveVector = transform.TransformDirection(playerMovementInput) * _currentSpeed;
-        Vector3 moveVector = playerMovementInput * _currentSpeed;
 
-        rb.velocity = new Vector3 (moveVector.x, rb.velocity.y, moveVector.z);
+
+        playerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        playerMovementInput.Normalize();
+        if(playerMovementInput.magnitude > 0.1f){
+            Quaternion targetRotation = Quaternion.LookRotation(playerMovementInput);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        
+        Vector3 moveVector = playerMovementInput * _currentSpeed;
+        rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.z);
+            
     }
     private void PlayerDash (){
         if (Input.GetButtonDown("Dash") && !isDashing && playerMovementInput.magnitude > 0.1f) 
