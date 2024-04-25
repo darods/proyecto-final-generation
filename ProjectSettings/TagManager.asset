@@ -14,8 +14,8 @@ TagManager:
   - UI
   - PickUpLayer
   - Player
-  - 
-  - 
+  - SpawnObj
+  - SeatRow
   - 
   - 
   - NPCGround

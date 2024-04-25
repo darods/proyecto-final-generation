@@ -60,10 +60,17 @@ public class Pilot : Subject
             }
             sleepingImage.SetActive(false);
             Debug.Log("Pilot has been awakened");
+            
         }
         else
         {
             Debug.Log("The pilot is not asleep");
+           
         }
+    }
+
+
+    public bool IsAsleep (){
+        return isAsleep;
     }
 }
