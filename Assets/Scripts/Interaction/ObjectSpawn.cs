@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ObjectSpawn : MonoBehaviour,IInteractable
 {
-[SerializeField] OrderSO order;
+[SerializeField] ObjectPooler.ObjectsToSpawn typeOfObject;
+
   public GameObject Interact(){
-    // posicion, rotacion 
-    Debug.Log("entra");
-    GameObject spawnedObject = Instantiate(order.prefab, transform.position, transform.rotation);
+    
+    GameObject spawnedObject = ObjectPooler.Instance.SpawnFromPool(typeOfObject, transform.position, transform.rotation);
     return spawnedObject;
 
   }

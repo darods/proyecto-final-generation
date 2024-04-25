@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _currentSpeed: 0
-  rotationSpeed: 0
+  rotationSpeed: 10
   _dashSpeed: 10
   _dashDuration: 0.2
   dashParticles: {fileID: 5562294025779446091}
@@ -440,13 +440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b437b7979ffda54eac40fc46b0bc7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRange: 0.5
+  interactRange: 1
   layerObject:
     serializedVersion: 2
-    m_Bits: 8
-  layerSpawn:
-    serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 264
   launchForce: 5
   _maxLaunchTime: 10
 --- !u!1001 &5562294025797672601

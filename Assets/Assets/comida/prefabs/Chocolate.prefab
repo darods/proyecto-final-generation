@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3156911003097362818}
   - component: {fileID: 737508396632635168}
   - component: {fileID: 7490007115685075796}
+  - component: {fileID: 4970481350733483506}
   m_Layer: 0
   m_Name: Chocolate
   m_TagString: Untagged
@@ -63,6 +64,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.58, y: 1.96, z: 0.59}
   m_Center: {x: 0, y: 0.93, z: 0.03}
+--- !u!114 &4970481350733483506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8590156184569649389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867a06eaccf173e48880c40d8ff92aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: {fileID: 11400000, guid: bdaebe2142efc054eb5f87faa989dde9, type: 2}
 --- !u!1001 &8794246312261723610
 PrefabInstance:
   m_ObjectHideFlags: 0

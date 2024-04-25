@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec904bba07b440b4da1e0b1ee31b9ccd, type: 3}
   m_Name: Sandwish
   m_EditorClassIdentifier: 
-  orderSprite: {fileID: 0}
-  prefab: {fileID: 0}
+  orderSprite: {fileID: 2800000, guid: e07f379619d83c245b534cc2df2d9443, type: 3}

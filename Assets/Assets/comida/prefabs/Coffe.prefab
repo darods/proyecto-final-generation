@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 4357939213147441351}
   - component: {fileID: 116577668222317949}
   - component: {fileID: 3479084484115264023}
+  - component: {fileID: 628584631198792358}
   m_Layer: 0
   m_Name: Coffe
   m_TagString: Untagged
@@ -229,8 +230,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42, y: 1.01, z: 0.4}
-  m_Center: {x: 0, y: 0.38, z: 0}
+  m_Size: {x: 0.15, y: 0.93, z: 0.21}
+  m_Center: {x: 0.01, y: 0.38, z: 0}
+--- !u!114 &628584631198792358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936869896608651772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867a06eaccf173e48880c40d8ff92aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: {fileID: 11400000, guid: 6b50d73f14dc680428430d8514e5f9e2, type: 2}
 --- !u!1 &6395876330104890518
 GameObject:
   m_ObjectHideFlags: 0

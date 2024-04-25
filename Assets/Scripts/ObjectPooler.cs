@@ -23,7 +23,11 @@ public class ObjectPooler : MonoBehaviour
 
     public enum ObjectsToSpawn
     {
-        NPC
+        NPC,
+        Coffe,
+        Chocolate,
+        Soda,
+        Sandwish
     }
 
     private void Awake()

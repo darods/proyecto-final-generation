@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec904bba07b440b4da1e0b1ee31b9ccd, type: 3}
   m_Name: Chocolate
   m_EditorClassIdentifier: 
-  orderSprite: {fileID: 0}
-  prefab: {fileID: 0}
+  orderSprite: {fileID: 2800000, guid: 39ca74afc86c4b64db777cb081d9562b, type: 3}
