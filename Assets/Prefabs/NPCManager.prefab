@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8599127421233903704}
   - component: {fileID: 8599127421233903706}
-  - component: {fileID: 8599127421233903707}
   m_Layer: 0
   m_Name: NPCManager
   m_TagString: Untagged
@@ -81,18 +80,7 @@ MonoBehaviour:
   NPCList: []
   leftSpawnPosition: {fileID: 8599127421695599883}
   rightSpawnPosition: {fileID: 8599127420530008482}
-  leftTargetPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  rightTargetPositions:
-  - {fileID: 0}
-  - {fileID: 0}
+  seatRows:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -100,23 +88,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   spawnDelay: 1
---- !u!114 &8599127421233903707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599127421233903705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66be10112720bfb4da0542750324f4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pools:
-  - tag: 0
-    prefab: {fileID: 5753256693258968878, guid: 2a58b71975fc3204bb325e6fd247f1b7,
-      type: 3}
-    size: 16
 --- !u!1 &8599127421695599880
 GameObject:
   m_ObjectHideFlags: 0
