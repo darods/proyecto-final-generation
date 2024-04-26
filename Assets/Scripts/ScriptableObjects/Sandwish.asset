@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Sandwish
   m_EditorClassIdentifier: 
   orderSprite: {fileID: 2800000, guid: e07f379619d83c245b534cc2df2d9443, type: 3}
+  orderModel: {fileID: 1603898924375137990, guid: 8f85f66a440b3f64cb5e5fec3388ccb4,
+    type: 3}

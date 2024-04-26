@@ -43,14 +43,45 @@ public class GetObject : MonoBehaviour
     private void CheckForInteractions()
     {
         //TODO: CORREGIR SOLTAR LANZAR COGER Y ENTREGAR
+        if (Input.GetButtonDown("TakeObject"))
+        {
+            RaycastHit _hit;
+            if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange, layerObject))
+            {
+                GameObject gameObjectColision = _hit.collider.gameObject;
+                if (pickedObject == null)
+                {
+                    if (gameObjectColision.TryGetComponent(out IInteractable interactObj))
+                    {
+                        GameObject spawn = interactObj.Interact();
+                        PickUpObject(spawn);
 
+                        return;
+                    }
+                    PickUpObject(_hit.collider.gameObject);
+                }
+                else
+                {
+                    if (gameObjectColision.TryGetComponent(out SeatRow interactObj))
+                    {
+                        Order order = pickedObject.GetComponent<Order>();
+                        bool receiveOrder = interactObj.ReceiveOrder(order.order);
+                        pickedObject.SetActive(!receiveOrder);
+                        Lanzar();
+                        isHolding = !receiveOrder;
+                    }
+                }
+            }
+        }
 
-        //
-        // 
+        if (Input.GetButtonDown("TakeObject") && pickedObject != null && isHolding)
+        {
+
+            Lanzar();
+            _launchTimer = 0.0f;
+            isHolding = false;
+        }
     }
-
-
-    
 
     private void PickUpObject(GameObject obj)
     {

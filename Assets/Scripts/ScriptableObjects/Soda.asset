@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Soda
   m_EditorClassIdentifier: 
   orderSprite: {fileID: 2800000, guid: 3f303bb975ec1cf42a62af3a78b37a36, type: 3}
+  orderModel: {fileID: 7290262545516141568, guid: d72a01c4969d0554eb5fe7c0990e67ad,
+    type: 3}
