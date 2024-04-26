@@ -8,6 +8,7 @@ public class GameStartCountdownUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countdownText;
 
+
     private void Start()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;

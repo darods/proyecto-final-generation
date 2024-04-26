@@ -12,7 +12,9 @@ public static class Loader
         MultiplayerScene,
         MainMenuScene,
         GameScene,
-        LoadingScene
+        LoadingScene,
+        MainMenuSceneMultiplayer,
+        GameSceneSyncTest,
 
     }
     private static Scene targetScene;

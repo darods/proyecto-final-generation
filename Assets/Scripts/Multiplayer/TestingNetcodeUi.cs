@@ -15,7 +15,7 @@ public class TestingNetcodeUi : MonoBehaviour
             Hide();
             //
             AirplaneGameMultiplayer.Instance.StartHost();
-            Loader.LoadNetwork(Loader.Scene.GameScene);
+            //Loader.LoadNetwork(Loader.Scene.MultiplayerScene);
         });
 
         startClientButton.onClick.AddListener(() => {
@@ -23,7 +23,7 @@ public class TestingNetcodeUi : MonoBehaviour
             Hide();
             //Loader.Load(Loader.Scene.MultiplayerScene);
             AirplaneGameMultiplayer.Instance.StartClient();
-            Loader.LoadNetwork(Loader.Scene.GameScene);
+            //Loader.LoadNetwork(Loader.Scene.MultiplayerScene);
         });
     }
 

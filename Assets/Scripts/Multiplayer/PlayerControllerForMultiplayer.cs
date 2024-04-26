@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 
 using UnityEngine;
+using Unity.Collections;
 
 public class PlayerControllerForMultiplayer : NetworkBehaviour
 {
@@ -11,7 +12,30 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
     [SerializeField] private float _moveSpeed, _currentSpeed;
     private Rigidbody rb;
     private Vector3 playerMovementInput;
+    //test for network variables
+    private NetworkVariable<int> score = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    //test for more complex netowrk variables
+    public struct MyCustomData : INetworkSerializable{
+        public int _int;
+        public bool _bool;
+        public FixedString32Bytes message;
+
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+        {
+            serializer.SerializeValue(ref _int);
+            serializer.SerializeValue(ref _bool);
+            serializer.SerializeValue(ref message);
+        }
+    }
+
+    private NetworkVariable<MyCustomData> randomData = new NetworkVariable<MyCustomData>(
+        new MyCustomData
+        {
+            _int = 0,
+            _bool = true,
+            message = "hola",
+        }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Dash Settings")]
     [Space]
@@ -27,6 +51,7 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         _currentSpeed = _moveSpeed;
         isDashing = false;
+
     }
     void Update()
     {
@@ -37,7 +62,7 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
         }
         MovePlayer();
         PlayerDash();
-
+        IsSpacebarPressed();
     }
     private void MovePlayer()
     {
@@ -76,5 +101,51 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
 
         }
 
+    }
+    public void IsSpacebarPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            /*
+            score.Value++;
+            randomData.Value = new MyCustomData
+            {
+                _int = score.Value,
+                _bool = false,
+                message = "hola1",
+            };
+
+            //Debug.Log("OwnerID: "+OwnerClientId+" score: " + score.Value);
+            Debug.Log("OwnerID: " + OwnerClientId + " myCustomData int : " + randomData.Value._int + " bool: " + randomData.Value._bool + " msg: " + randomData.Value.message);
+
+
+            if (IsClient)
+            {
+                // This will log locally and send the log to the server to be logged there aswell
+                //Debug.Log("OwnerID: " + OwnerClientId + " score: " + score.Value);
+                Debug.Log("OwnerID: " + OwnerClientId + " myCustomData int : " + randomData.Value._int + " bool: " + randomData.Value._bool + " msg: " + randomData.Value.message);
+            }
+            */
+            //TestServerRpc("message");
+            //TestServerRpc(new ServerRpcParams());
+            TestClientRpc();
+        }
+        
+    }
+
+    [ServerRpc]
+    /*private void TestServerRpc(string msg)
+    {
+        Debug.Log("TestServerRpc " + OwnerClientId + " msg " + msg);
+    }*/
+    private void TestServerRpc(ServerRpcParams serverRpcParams)
+    {
+        Debug.Log("TestServerRpc " + OwnerClientId + "; " + serverRpcParams.Receive.SenderClientId);
+    }
+
+    [ClientRpc]
+    private void TestClientRpc()
+    {
+        Debug.Log("test client RPC");
     }
 }

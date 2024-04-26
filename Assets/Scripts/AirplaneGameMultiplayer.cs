@@ -7,6 +7,13 @@ public class AirplaneGameMultiplayer : NetworkBehaviour
 {
     // Start is called before the first frame update
     public static AirplaneGameMultiplayer Instance { get; private set; }
+    
+
+    private void Awake()
+    {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void StartHost() 
     {
@@ -20,11 +27,6 @@ public class AirplaneGameMultiplayer : NetworkBehaviour
         NetworkManager.Singleton.StartClient();
     }
 
-    private void Awake()
-    {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     void Start()
     {

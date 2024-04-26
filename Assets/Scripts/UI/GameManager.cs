@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        Debug.Log(state);
+        //Debug.Log(state);
 
     }
 
