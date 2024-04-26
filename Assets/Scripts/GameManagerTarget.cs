@@ -4,26 +4,45 @@ using UnityEngine;
 
 public class GameManagerTarget : MonoBehaviour
 {
-    public List<GameObject> targets;
-    private float spawnRate = 1.0f;
-    // Start is called before the first frame update
+    [SerializeField] private float spawnRate = 1.0f;
+    private bool isActive = true;
+    private ObjectPooler objectPooler;
+
+    private ObjectPooler.ObjectsToSpawn[] menuItemsToSpawn = {
+        ObjectPooler.ObjectsToSpawn.MenuCookie,
+        ObjectPooler.ObjectsToSpawn.MenuPizza,
+        ObjectPooler.ObjectsToSpawn.MenuSandwish,
+        ObjectPooler.ObjectsToSpawn.MenuSoda,
+        ObjectPooler.ObjectsToSpawn.MenuSteak
+    };
+
     void Start()
     {
-        StartCoroutine(SpawnTarget());  
+        objectPooler = ObjectPooler.Instance;
+        StartCoroutine(SpawnTargets());
     }
 
-    IEnumerator SpawnTarget()
+    IEnumerator SpawnTargets()
     {
-        while(true)
+        while (isActive)
         {
+            foreach (var item in menuItemsToSpawn)
+            {
+                SpawnAndActivateObject(item);
+            }
             yield return new WaitForSeconds(spawnRate);
-            int index = Random.Range(0, targets.Count);
-            Instantiate(targets[index]);
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    private void SpawnAndActivateObject(ObjectPooler.ObjectsToSpawn objectType)
     {
-        
+        GameObject spawnedObject = objectPooler.SpawnFromPool(objectType, transform.position, transform.rotation);
+        spawnedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        spawnedObject.GetComponent<Target>().ActivateObject();
+    }
+
+    public void StopSpawn()
+    {
+        isActive = false;
     }
 }

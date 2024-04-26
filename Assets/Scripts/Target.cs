@@ -5,38 +5,38 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     private Rigidbody targetRb;
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
-    private float maxTorque = 10;
-    private float xRange = 4;
-    private float ySpawnPos = -6;
-    // Start is called before the first frame update
-    void Start()
-    {   
-     targetRb = GetComponent<Rigidbody>();
-     
-     targetRb.AddForce(RandoForce(), ForceMode.Impulse);
-     targetRb.AddTorque(RandoTorque(), RandoTorque(), RandoTorque(), ForceMode.Impulse);
-        
+    private float minSpeed = 12f;
+    private float maxSpeed = 16f;
+    private float maxTorque = 10f;
+
+    private void Awake()
+    {
+        // Get the Rigidbody component attached to this GameObject
+        targetRb = GetComponent<Rigidbody>();
     }
 
-    Vector3 RandoForce()
+    // Public method to activate the object and apply forces
+    public void ActivateObject()
     {
+        AddForceToObject();
+    }
+
+    private Vector3 RandoForce()
+    {
+        // Generate a random upward force based on min and max speeds
         return Vector3.up * Random.Range(minSpeed, maxSpeed);
     }
 
-    float RandoTorque() 
+    private float RandoTorque()
     {
+        // Generate a random torque value within the specified range
         return Random.Range(-maxTorque, maxTorque);
     }
 
-    Vector3 RandoSpawnPos()
+    private void AddForceToObject()
     {
-        return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Apply random upward force and random torque in all three axes
+        targetRb.AddForce(RandoForce(), ForceMode.Impulse);
+        targetRb.AddTorque(RandoTorque(), RandoTorque(), RandoTorque(), ForceMode.Impulse);
     }
 }
