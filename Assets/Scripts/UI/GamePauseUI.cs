@@ -10,19 +10,36 @@ public class GamePauseUI : MonoBehaviour
 
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button mainMenuButton;
+    [SerializeField] private Button optionsButton;
 
-    private void Awake() {
-        resumeButton.onClick.AddListener(() => {
+    public event EventHandler OnResumeSound;
+
+    public static GamePauseUI Instance { get; private set; }
+
+
+    private void Awake()
+    {
+        Instance = this;
+        resumeButton.onClick.AddListener(() =>
+        {
             GameManager.Instance.UnpasuedGame();
+            OnResumeSound?.Invoke(this, EventArgs.Empty);
+
         });
 
-        mainMenuButton.onClick.AddListener(() => {
+        mainMenuButton.onClick.AddListener(() =>
+        {
             Loader.Load(Loader.Scene.MainMenuScene);
         });
+        optionsButton.onClick.AddListener(() =>
+       {
+           SoundOptionsUI.Instance.Show();
+       });
     }
 
-    private void Start() {
-        
+    private void Start()
+    {
+
         GameManager.Instance.OnGamePaused += Instance_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += Instance_OnGameUnpaused;
 
@@ -39,11 +56,13 @@ public class GamePauseUI : MonoBehaviour
         Show();
     }
 
-    private void Show() {
+    private void Show()
+    {
         gameObject.SetActive(true);
-   }
+    }
 
-    private void Hide() {
+    private void Hide()
+    {
         gameObject.SetActive(false);
-   }
+    }
 }
