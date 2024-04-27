@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec904bba07b440b4da1e0b1ee31b9ccd, type: 3}
   m_Name: Coffee
   m_EditorClassIdentifier: 
-  orderName: 
-  orderSprite: {fileID: 0}
+  orderSprite: {fileID: 2800000, guid: 3abf85cc38855924b909df5c426277a1, type: 3}
+  orderModel: {fileID: 5983606923701944898, guid: 6143400819eb8184e9e91e468bc52f0d,
+    type: 3}
