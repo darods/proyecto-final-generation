@@ -183,6 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _currentSpeed: 0
+  spawnedObjectPrefab: {fileID: 8764729443496253754, guid: 5eedbd8d426a4894989888c161d80654,
+    type: 3}
   _dashSpeed: 10
   _dashDuration: 0.2
   dashParticles: {fileID: 5562294025779446091}

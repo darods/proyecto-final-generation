@@ -37,6 +37,12 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
             message = "hola",
         }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    // transform es igual a gameobject
+    [SerializeField] private Transform spawnedObjectPrefab;
+    private Transform spawnwedObjectTransform;
+
+
+
     [Header("Dash Settings")]
     [Space]
     [SerializeField] private float _dashSpeed = 10.0f; // Velocidad de dash
@@ -128,7 +134,13 @@ public class PlayerControllerForMultiplayer : NetworkBehaviour
             */
             //TestServerRpc("message");
             //TestServerRpc(new ServerRpcParams());
-            TestClientRpc();
+            //TestClientRpc();
+            spawnwedObjectTransform = Instantiate(spawnedObjectPrefab);
+            spawnwedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Destroy(spawnwedObjectTransform.gameObject);
         }
         
     }
