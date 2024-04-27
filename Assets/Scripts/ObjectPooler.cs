@@ -27,7 +27,12 @@ public class ObjectPooler : MonoBehaviour
         Coffe,
         Chocolate,
         Soda,
-        Sandwish
+        Sandwish,
+        MenuCookie,
+        MenuPizza,
+        MenuSandwish,
+        MenuSoda,
+        MenuSteak
     }
 
     private void Awake()
