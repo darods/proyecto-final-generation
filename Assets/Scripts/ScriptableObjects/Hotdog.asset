@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec904bba07b440b4da1e0b1ee31b9ccd, type: 3}
   m_Name: Hotdog
   m_EditorClassIdentifier: 
-  orderName: hotdog
-  orderSprite: {fileID: 2800000, guid: 157e594b044f0f149880d5e3c812cf46, type: 3}
+  orderSprite: {fileID: 2800000, guid: e07f379619d83c245b534cc2df2d9443, type: 3}
+  prefab: {fileID: 0}

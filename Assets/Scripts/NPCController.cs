@@ -135,6 +135,7 @@ public class NPCController : Subject
     {
         if (currentOrder != null && order == currentOrder)
         {
+            orderManager.OrderCompletedOrCanceled(currentOrder);
             currentOrder = null;
             orderTimeout = 0;
             RestoreVisual();
