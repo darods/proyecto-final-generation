@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class NPCManager : MonoBehaviour
+public class NPCManager : NetworkBehaviour
 {
     [SerializeField] private List<GameObject> NPCList = new List<GameObject>();
 
@@ -21,11 +22,26 @@ public class NPCManager : MonoBehaviour
     private bool allNPCsSpawned = false;
     private bool allNPCsSeated = false;
 
+    public float delayTime = 15f; // Adjust this value to set the delay time
+
+
     private void Start()
     {
+        StartCoroutine(StartDelayed());
+
+        
+    }
+
+    IEnumerator StartDelayed()
+    {
+        // Wait for the specified delay time
+        yield return new WaitForSeconds(delayTime);
         SearchNPCInScene();
         InitializeTargetQueues();
         StartCoroutine(SpawnNPCsEquitably());
+
+        // Code to execute after the delay
+        Debug.Log("Delayed start complete!");
     }
 
     private void LateUpdate()
@@ -65,15 +81,18 @@ public class NPCManager : MonoBehaviour
             {
                 if (seatRow.HasAvailableSeat())
                 {
-                    GameObject npc;
+                    GameObject npc; // spawn forn single player version
+
                     if (spawnLeftNext)
                     {
                         npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.NPC, leftSpawnPosition.position, leftSpawnPosition.rotation);
+                        npc.GetComponent<NetworkObject>().Spawn(true);
                         spawnLeftNext = false;
                     }
                     else
                     {
                         npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.NPC, rightSpawnPosition.position, rightSpawnPosition.rotation);
+                        npc.GetComponent<NetworkObject>().Spawn(true);
                         spawnLeftNext = true;
                     }
                     seatRow.SetSeat(npc.GetComponent<NPCController>());
