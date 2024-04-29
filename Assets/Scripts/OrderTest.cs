@@ -17,6 +17,7 @@ public class OrderTest : MonoBehaviour, IObserver
 
         pilot = GameObject.FindAnyObjectByType<Pilot>();
         pilot.Subscribe(this);
+        StartPilotTimer();
     }
 
     [ContextMenu("Dar Orden")]

@@ -40,10 +40,9 @@ public class Pilot : Subject
 
     private IEnumerator Sleep()
     {
-
         while (isAsleep)
         {
-            Notify(Actions.RemovePoints);
+            Notify(Actions.RemovePoints); 
             yield return new WaitForSeconds(1);
         }
     }
