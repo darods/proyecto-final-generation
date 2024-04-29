@@ -19,6 +19,7 @@ public class GetObject : MonoBehaviour
     private Rigidbody rbObject;
     private GameObject pickedObject = null;
     private Vector3 offset;
+    [SerializeField] private string interactName;
 
     [Header("Launch Settings")]
     [SerializeField] private float launchForce = 4f;
@@ -43,7 +44,7 @@ public class GetObject : MonoBehaviour
     private void CheckForInteractions()
     {
         //TODO: CORREGIR SOLTAR LANZAR COGER Y ENTREGAR
-        if (Input.GetButtonDown("TakeObject"))
+        if (Input.GetButtonDown(interactName))
         {
             RaycastHit _hit;
             if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange, layerObject))
