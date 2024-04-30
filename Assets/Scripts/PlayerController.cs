@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
         private Rigidbody rb;
         private Vector3 playerMovementInput;
         
-
+        [SerializeField] bool isMove = false;
     [Header("Dash Settings")]
     [Space]
         [SerializeField] private float _dashSpeed = 10.0f; // Velocidad de dash
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
         private CharacterController player;
         public ParticleSystem dashParticles;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,9 +29,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (isMove){
         MovePlayer();
         PlayerDash();
-        
+        }
     }
     private void MovePlayer (){
 
@@ -70,5 +72,9 @@ public class PlayerController : MonoBehaviour
     
     }
 
+
+    public void SetPlayerState (bool state){
+        isMove = state;
+    }
 
 }
