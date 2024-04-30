@@ -26,6 +26,9 @@ public class NPCController : Subject
     [SerializeField] private float orderTimeout = 15f;
     private bool canMakeOrders = false;
 
+    [Header("Visual Model")]
+    [SerializeField] private Animator modelAnimator;
+
     private void Start()
     {
         orderManager = OrderManager.Instance;
@@ -78,6 +81,7 @@ public class NPCController : Subject
         }
 
         agent.transform.rotation = finalRotation;
+        modelAnimator.SetBool("isOnSeat", true);
     }
 
     public bool IsAgentAtDestination()
