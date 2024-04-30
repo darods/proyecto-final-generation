@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
-    guid: b6b73dd9a53a4614daff3d82edc3435f
-  - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: c82cba099f508db49a5f8581c6c82d3e
   - enabled: 1
+    path: Assets/Scenes/LevelSelector.unity
+    guid: 2032867a898f98e41b0d781baccdd8dc
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: b6b73dd9a53a4614daff3d82edc3435f
+  - enabled: 1
+    path: Assets/Scenes/ScoreManagerScene.unity
+    guid: 33d9f2e9b194f714aabc1242ea9597c7
+  - enabled: 0
     path: Assets/Scenes/SecondMapDesing.unity
     guid: b1ea5b0131a773e43a7721eb6b15bef8
   m_configObjects: {}

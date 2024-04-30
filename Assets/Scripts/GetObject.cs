@@ -117,9 +117,6 @@ public class GetObject : MonoBehaviour
             isHolding = false;
             _launchTimer = 0.0f;
         }
-
- 
-
     }
     private void PickUpObject(GameObject obj)
     {
@@ -187,9 +184,4 @@ public void QuickTime()
 
     Debug.Log("Puntos: " + complete);
 }
-
-
-
-
-
 }

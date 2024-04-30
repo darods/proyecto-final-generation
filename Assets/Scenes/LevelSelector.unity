@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1902583, g: 0.14306888, b: 0.15286884, a: 1}
+  m_IndirectSpecularColor: {r: 0.19044304, g: 0.14302498, b: 0.15245566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69344113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1413544224302488939, guid: ed26c633fd1f1374497778405cbac66a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2259825330288263703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &169714810
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,18 +479,18 @@ PrefabInstance:
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1936774647}
+      objectReference: {fileID: 69344113}
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -498,17 +504,17 @@ PrefabInstance:
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3641242400561997891, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4731630908760902389, guid: ed26c633fd1f1374497778405cbac66a,
         type: 3}
