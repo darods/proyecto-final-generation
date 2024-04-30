@@ -43,6 +43,7 @@ public class GetObject : MonoBehaviour
 
     private void CheckForInteractions()
     {
+        Debug.Log("intectact state: " + Input.GetButtonDown(interactName));
         //TODO: CORREGIR SOLTAR LANZAR COGER Y ENTREGAR
         if (Input.GetButtonDown(interactName))
         {
@@ -75,7 +76,7 @@ public class GetObject : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("TakeObject") && pickedObject != null && isHolding)
+        if (Input.GetButtonDown(interactName) && pickedObject != null && isHolding)
         {
 
             Lanzar();
@@ -118,7 +119,7 @@ public class GetObject : MonoBehaviour
     }
     private void CheckPressed()
     {
-        if (Input.GetButton("TakeObject") && pickedObject != null)
+        if (Input.GetButton(interactName) && pickedObject != null)
             _launchTimer += Time.deltaTime;
         if (_launchTimer > _maxLaunchTime)
             _launchTimer = _maxLaunchTime;

@@ -4012,6 +4012,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888854391357886467, guid: bf987b89ecdb5ea4e9f690af280f8560,
         type: 3}
+      propertyPath: interactName
+      value: TakeObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888854391357886467, guid: bf987b89ecdb5ea4e9f690af280f8560,
+        type: 3}
       propertyPath: layerObject.m_Bits
       value: 776
       objectReference: {fileID: 0}
