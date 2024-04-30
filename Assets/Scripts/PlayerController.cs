@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
         [SerializeField] private float _moveSpeed, _currentSpeed, rotationSpeed ;
         private Rigidbody rb;
         private Vector3 playerMovementInput;
-        
+        private float movementX;
+        private float movementY;
+
 
     [Header("Dash Settings")]
     [Space]
@@ -20,12 +22,20 @@ public class PlayerController : MonoBehaviour
         private CharacterController player;
         public ParticleSystem dashParticles;
 
+    [Header("Input Settings")]
+    [Space]
+        [SerializeField] private string inputNameHorizontal;
+        [SerializeField] private string inputNameVertical;
+        [SerializeField] private string dashName;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         _currentSpeed = _moveSpeed;
         isDashing = false;
-    }
+        movementX = 0;
+        movementY = 0;
+}
     void Update()
     {
         MovePlayer();
@@ -35,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer (){
 
 
-        playerMovementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        playerMovementInput = GetPlayerInput();
         playerMovementInput.Normalize();
         if(playerMovementInput.magnitude > 0.1f){
             Quaternion targetRotation = Quaternion.LookRotation(playerMovementInput);
@@ -48,7 +58,7 @@ public class PlayerController : MonoBehaviour
             
     }
     private void PlayerDash (){
-        if (Input.GetButtonDown("Dash") && !isDashing && playerMovementInput.magnitude > 0.1f) 
+        if (Input.GetButtonDown(dashName) && !isDashing && playerMovementInput.magnitude > 0.1f) 
         {
             _currentSpeed = _dashSpeed;
             _dashTimer = _dashDuration;
@@ -70,5 +80,31 @@ public class PlayerController : MonoBehaviour
     
     }
 
+    Vector3 GetPlayerInput()
+    {
 
+        //Vector3 vel = new Vector3(movementX * Time.deltaTime, 0, movementY * Time.deltaTime);
+        //Debug.Log(vel);
+        return new Vector3(Input.GetAxisRaw(inputNameHorizontal), 0f, Input.GetAxisRaw(inputNameVertical));
+        /*
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            movementY = 1;
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            movementY = -1;
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            movementX = -1;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            movementX = 1;
+
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
+            movementY = 0;
+
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+            movementX = 0;
+
+        
+        
+        return vel;
+        */
+    }
 }
