@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,41 +6,39 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
-    [SerializeField] private Button configurationButton;
-
-    private GameObject tuto; 
-
-
     private void Awake()
     {
-        tuto = GameObject.FindGameObjectWithTag("TutoPnl");
-        tuto.SetActive(false);
-
-        playButton.onClick.AddListener(() =>
+        if(playButton != null)
         {
-            Loader.Load(Loader.Scene.GameScene);
-        });
-        quitButton.onClick.AddListener(() =>
+            playButton.onClick.AddListener(() =>
+            {
+                Loader.Load(Loader.Scene.GameScene);
+            });
+        }
+        
+        if(quitButton != null)
         {
-            Application.Quit();
-        });
-        configurationButton.onClick.AddListener(() =>
-        {
-            tuto.SetActive(true);
-            
-        });
-
+            quitButton.onClick.AddListener(() =>
+            {
+                Application.Quit();
+            });
+        }
 
         Time.timeScale = 1f;
     }
 
-    void Update()
+    public void NextScene()
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
 
-        if (Input.GetKey(KeyCode.T))
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            tuto.SetActive(false);
-            Time.timeScale = 1.0f;
+            SceneManager.LoadScene(nextSceneIndex);
         }
-    }  
+        else
+        {
+            Debug.Log("No hay más escenas para cargar. Considera reiniciar al inicio.");
+        }
+    }
 }
