@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1721050593695789674}
   - component: {fileID: 5013944085512235236}
   - component: {fileID: 4346479176977430367}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sandwish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,10 +155,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2031112472869300092, guid: 27e1e48afe5aad540885234f8bee9e46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27e1e48afe5aad540885234f8bee9e46,
         type: 3}
       propertyPath: m_Name
       value: cupSaucer
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 27e1e48afe5aad540885234f8bee9e46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e1e48afe5aad540885234f8bee9e46, type: 3}
@@ -175,6 +185,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8045399309629639161}
     m_Modifications:
+    - target: {fileID: -9172262239154548389, guid: d46c4945b4d866842afaea601c3dd128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8841933064720734068, guid: d46c4945b4d866842afaea601c3dd128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d46c4945b4d866842afaea601c3dd128,
         type: 3}
       propertyPath: m_RootOrder
@@ -234,6 +254,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sandwich
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d46c4945b4d866842afaea601c3dd128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939202481237943766, guid: d46c4945b4d866842afaea601c3dd128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d46c4945b4d866842afaea601c3dd128, type: 3}

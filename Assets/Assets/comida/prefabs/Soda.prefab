@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5686750055468389322}
   - component: {fileID: 3709860195470956675}
   - component: {fileID: 191408068466679486}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Soda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,10 +139,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7561723873962905138, guid: d9b3c5174d76c38489a8fe3532ea8ffa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d9b3c5174d76c38489a8fe3532ea8ffa,
         type: 3}
       propertyPath: m_Name
       value: sodaCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d9b3c5174d76c38489a8fe3532ea8ffa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b3c5174d76c38489a8fe3532ea8ffa, type: 3}

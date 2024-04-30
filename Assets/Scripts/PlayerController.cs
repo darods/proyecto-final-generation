@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
         private Vector3 playerMovementInput;
         private float movementX;
         private float movementY;
-
-
+        
+        [SerializeField] bool isMove = false;
     [Header("Dash Settings")]
     [Space]
         [SerializeField] private float _dashSpeed = 10.0f; // Velocidad de dash
@@ -38,9 +38,10 @@ public class PlayerController : MonoBehaviour
 }
     void Update()
     {
+        if (isMove){
         MovePlayer();
         PlayerDash();
-        
+        }
     }
     private void MovePlayer (){
 
@@ -101,10 +102,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
             movementX = 0;
-
-        
-        
+            
         return vel;
         */
     }
+    public void SetPlayerState (bool state){
+        isMove = state;
+    }
+
 }
