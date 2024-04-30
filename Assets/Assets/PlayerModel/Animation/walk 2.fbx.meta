@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b532f207cc0de6c4994a0c7f7617f783
+guid: ee64111a9b8d27145ba86374df650d1a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Dash
+      name: Walk 2
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
