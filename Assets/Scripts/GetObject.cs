@@ -108,7 +108,7 @@ public class GetObject : MonoBehaviour
             isHolding = true;
 
         }
-        if (Input.GetButtonUp("TakeObject") && pickedObject && isHolding)
+        if (Input.GetButtonUp(interactName) && pickedObject && isHolding)
         {
             
             //LANZAR
@@ -118,24 +118,7 @@ public class GetObject : MonoBehaviour
             _launchTimer = 0.0f;
         }
 
-
-                        return;
-                    }
-                    PickUpObject(_hit.collider.gameObject);
-                }
-                else
-                {
-                    if (gameObjectColision.TryGetComponent(out SeatRow interactObj))
-                    {
-                        Order order = pickedObject.GetComponent<Order>();
-                        bool receiveOrder = interactObj.ReceiveOrder(order.order);
-                        pickedObject.SetActive(!receiveOrder);
-                        Lanzar();
-                        isHolding = !receiveOrder;
-                    }
-                }
-            }
-        }
+ 
 
     }
     private void PickUpObject(GameObject obj)
