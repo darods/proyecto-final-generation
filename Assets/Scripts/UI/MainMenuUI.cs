@@ -20,7 +20,7 @@ public class MainMenuUI : MonoBehaviour
 
         playButton.onClick.AddListener(() =>
         {
-            Loader.Load(Loader.Scene.GameScene);
+            Loader.Load(Loader.Scene.ScoreManagerScene);
         });
         quitButton.onClick.AddListener(() =>
         {
@@ -32,6 +32,7 @@ public class MainMenuUI : MonoBehaviour
             
         });
 
+        Debug.Log("Puntaje actual Main Menu: " + ScoreManager.instance.GetScore());
 
         Time.timeScale = 1f;
     }
