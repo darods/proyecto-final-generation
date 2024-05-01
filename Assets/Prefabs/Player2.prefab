@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8228245586426901541}
   - component: {fileID: 8228245586426901542}
   - component: {fileID: 8228245586426901538}
+  - component: {fileID: 1102819070622715249}
   m_Layer: 7
   m_Name: Player2
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8228245586426901543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.86, z: 0.005}
-  m_LocalScale: {x: 0.78635, y: 0.72492, z: 0.84976}
+  m_LocalScale: {x: 0.5847849, y: 0.53910124, z: 0.631941}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8483128828778836938}
@@ -53,13 +54,13 @@ MonoBehaviour:
   _moveSpeed: 5
   _currentSpeed: 0
   rotationSpeed: 25
-  isMove: 0
+  isMove: 1
   _dashSpeed: 10
   _dashDuration: 0.2
   dashParticles: {fileID: 8228245587704449651}
-  inputNameHorizontal: 
-  inputNameVertical: 
-  dashName: 
+  inputNameHorizontal: Horizontal
+  inputNameVertical: Vertical
+  dashName: Dash
 --- !u!54 &8228245586426901541
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,6 +112,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1102819070622715249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228245586426901543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332b6b0cd6deaca47bf04326cad50224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mashDelay: 1
+  maxComplete: 100
+  buttonSmash1: ButtonSmash1
+  buttonSmash2: ButtonSmash2
 --- !u!1 &8228245586789156248
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +178,7 @@ MonoBehaviour:
   layerObject:
     serializedVersion: 2
     m_Bits: 1800
-  interactName: 
+  interactName: TakeObject
   launchForce: 5
   _maxLaunchTime: 10
   key1: 113

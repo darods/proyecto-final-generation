@@ -23,6 +23,7 @@ public class GetObject : MonoBehaviour
     private Rigidbody rbObject;
     private GameObject pickedObject = null;
     private Vector3 offset;
+    ButtonMashing buttonMash;
     [SerializeField] private string interactName;
 
     [Header("Launch Settings")]
@@ -34,7 +35,8 @@ public class GetObject : MonoBehaviour
 
     private void Start()
     {
-        
+        buttonMash = GetComponentInParent<ButtonMashing>();
+
         pickUpLayer = LayerMask.NameToLayer("PickUpLayer");
         objectsLayer = LayerMask.NameToLayer("Objects");
         offset = new Vector3(0.00300000003f, -0.125f, 1.01800001f);
@@ -43,13 +45,13 @@ public class GetObject : MonoBehaviour
     {
         CheckPressed();
         CheckForInteractions();
-        QuickTime ();
+       
 
     }
 
     private void CheckForInteractions()
     {
-        Debug.Log("intectact state: " + Input.GetButtonDown(interactName));
+        
         //TODO: CORREGIR SOLTAR LANZAR COGER Y ENTREGAR
         if (Input.GetButtonDown(interactName))
         {
@@ -61,16 +63,19 @@ public class GetObject : MonoBehaviour
                 if (!pickedObject)
                 {
                     
-                     if (gameObjectColision.TryGetComponent(out Pilot pilot))
+                        if (gameObjectColision.TryGetComponent(out Pilot pilot))
                     {
-                        QuickTime();
-                        // Order order = pickedObject.GetComponent<Order>();
-                        bool quicktimeEvent = true;
-                        if (quicktimeEvent){
-                            pilot.WakeUp();
-                        }
+                        if(pilot.IsAsleep()){
+
+                            bool quicktimeEvent = buttonMash.StartButtonMashWithDelay(2f);                        
+                            if (quicktimeEvent){
+                                pilot.WakeUp();
+                            }
+                        }  
                         
-                    }else{
+                    }
+                    else
+                    {
                         GameObject Object;
                         if (gameObjectColision.TryGetComponent(out IInteractable interactObj))
                         {
@@ -157,31 +162,4 @@ public class GetObject : MonoBehaviour
 
 
 
-
-public KeyCode key1; // Definir las teclas desde el Inspector
-public KeyCode key2;
-
-private bool pressKey1 = false; // Indicar si se ha presionado la primera tecla
-private bool pressKey2 = true   ; // Indicar si se ha presionado la segunda tecla
-private int complete = 0; // Contador de éxitos
-
-public void QuickTime()
-{
-    
-    
-    if (Input.GetKeyDown(key1) && pressKey2) 
-    {
-        pressKey1 = true;
-        pressKey2 = false;
-        complete += 10;
-    }
-    else if (Input.GetKeyDown(key2) && pressKey1) 
-    {
-        pressKey1 = false;
-        pressKey2 = true;
-        complete += 10 ;
-    }
-
-    Debug.Log("Puntos: " + complete);
-}
 }
