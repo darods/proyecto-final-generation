@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (isMove){
-            Debug.Log("hola mundoo");
+          
             MovePlayer();
             PlayerDash();
         }
