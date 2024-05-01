@@ -7,13 +7,14 @@ using UnityEngine;
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI recipesDeliveredText;
+    [SerializeField] private TextMeshProUGUI youWinLoseText;
 
-    
+
+
     private void Start()
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
         Hide();
-
     }
 
     private void GameManager_OnStateChanged(object sender, EventArgs e)
@@ -21,6 +22,7 @@ public class GameOverUI : MonoBehaviour
         if (GameManager.Instance.IsGameOver())
         {
             Show();
+            UpdateScoreText();
         }
         else
         {
@@ -32,8 +34,31 @@ public class GameOverUI : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
+
     private void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    private void UpdateScoreText()
+    {
+        if (recipesDeliveredText != null)
+        {
+            int score = ScoreManager.Instance.GetScore();
+            recipesDeliveredText.text = score.ToString();
+
+            if (ScoreManager.Instance.LevelPassed())
+            {
+                youWinLoseText.text += "YOU WIN!";
+            }
+            else
+            {
+                youWinLoseText.text += "YOU LOSE";
+            }
+        }
+        else
+        {
+            Debug.LogError("recipesDeliveredText is not assigned in the inspector!");
+        }
     }
 }

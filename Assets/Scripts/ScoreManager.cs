@@ -6,11 +6,16 @@ public class ScoreManager : MonoBehaviour
 {
     private const string ScoreKey = "PlayerScore";
     private int playerScore = 0;
+    public static ScoreManager Instance { get; private set; }
+
 
     public static ScoreManager instance;
 
+    private bool levelPassed = false;
+
     private void Awake()
     {
+        Instance = this;
         if (instance == null)
         {
             instance = this;
@@ -60,5 +65,19 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(ScoreKey, playerScore);
         PlayerPrefs.Save();
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        playerScore += amount;
+        if (playerScore >= 50)
+        {
+            levelPassed = true;
+        }
+    }
+
+    public bool LevelPassed()
+    {
+        return levelPassed;
     }
 }

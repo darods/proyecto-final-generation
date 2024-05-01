@@ -134,7 +134,7 @@ public class NPCController : Subject
         currentOrder = null;
         orderTimeout = 0;
         ScoreManager.instance.DeductPoints(5);
-        Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
+        //Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
 
 
     }

@@ -2524,7 +2524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RECIPES DELIVERED
+  m_text: SCORE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65d749db4d9266b439f1c53eb24f271d, type: 2}
   m_sharedMaterial: {fileID: 7776220692064876152, guid: 65d749db4d9266b439f1c53eb24f271d,
@@ -2862,7 +2862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME OVER
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65d749db4d9266b439f1c53eb24f271d, type: 2}
   m_sharedMaterial: {fileID: 7776220692064876152, guid: 65d749db4d9266b439f1c53eb24f271d,
@@ -3809,6 +3809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipesDeliveredText: {fileID: 818450635}
+  youWinLoseText: {fileID: 806512766}
 --- !u!1 &1096461010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,6 +4097,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888854391357886467, guid: bf987b89ecdb5ea4e9f690af280f8560,
         type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1856409258}
+    - target: {fileID: 2888854391357886467, guid: bf987b89ecdb5ea4e9f690af280f8560,
+        type: 3}
       propertyPath: interactName
       value: TakeObject
       objectReference: {fileID: 0}
@@ -4173,6 +4179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562294025464064682, guid: bf987b89ecdb5ea4e9f690af280f8560,
+        type: 3}
+      propertyPath: isMove
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5562294025464064682, guid: bf987b89ecdb5ea4e9f690af280f8560,
         type: 3}
@@ -6473,6 +6484,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.6, z: 1.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1856409258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5562294025464064682, guid: bf987b89ecdb5ea4e9f690af280f8560,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136844359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a6ad8d7cb680d4eb12c8efb09dc359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1922424559 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5018064755033257348, guid: ad64411327bfa2b48a038d72ba16db04,
