@@ -95,6 +95,12 @@ public class NPCController : Subject
         ResetOrderTimer();
     }
 
+    public void StopMakingOrders()
+    {
+        canMakeOrders = false;
+        ResetOrderTimer();
+    }
+
     private void MakeOrder()
     {
         if (assignedSeat != null && currentOrder == null && assignedSeat.isOccupied)
