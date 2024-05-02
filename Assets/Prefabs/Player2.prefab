@@ -58,9 +58,9 @@ MonoBehaviour:
   _dashSpeed: 10
   _dashDuration: 0.2
   dashParticles: {fileID: 8228245587704449651}
-  inputNameHorizontal: Horizontal
-  inputNameVertical: Vertical
-  dashName: Dash
+  inputNameHorizontal: Horizontal 1
+  inputNameVertical: Vertical 1
+  dashName: Dash 1
 --- !u!54 &8228245586426901541
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mashDelay: 1
-  maxComplete: 100
-  buttonSmash1: ButtonSmash1
-  buttonSmash2: ButtonSmash2
+  maxComplete: 25
+  buttonSmash1: 113
+  buttonSmash2: 101
 --- !u!1 &8228245586789156248
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,8 +178,8 @@ MonoBehaviour:
   layerObject:
     serializedVersion: 2
     m_Bits: 1800
-  interactName: TakeObject
-  launchForce: 5
+  interactName: TakeObject 1
+  launchForce: 10
   _maxLaunchTime: 10
 --- !u!1 &8228245587689149185
 GameObject:
