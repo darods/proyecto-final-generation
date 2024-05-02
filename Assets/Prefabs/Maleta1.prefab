@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 14615671472988829}
   - component: {fileID: 14615671472988826}
   - component: {fileID: 14615671472988830}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Maleta1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1001 &14615672183803177
 PrefabInstance:
@@ -129,6 +129,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Backpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9822db5622a245347870b4ae17743de9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9822db5622a245347870b4ae17743de9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9822db5622a245347870b4ae17743de9, type: 3}
