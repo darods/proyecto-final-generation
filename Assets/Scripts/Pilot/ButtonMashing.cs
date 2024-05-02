@@ -33,7 +33,9 @@ public class ButtonMashing : MonoBehaviour
     public void StartGame()
     {
         started = true;
+        
         ui.ButtonSmash();
+        
     }
 
     private void EndGame()
@@ -42,7 +44,10 @@ public class ButtonMashing : MonoBehaviour
         started = false;
         isWin = (complete >= maxComplete);
         complete = 0;
-        OnGameEnd?.Invoke(isWin); // Activar el evento OnGameEnd con el resultado del juego
+        mashTimer = mashDelay;
+        buttonSelected = buttonSmash2;
+        OnGameEnd?.Invoke(isWin);
+         // Activar el evento OnGameEnd con el resultado del juego
     }
 
     private void DetectMash(KeyCode button)

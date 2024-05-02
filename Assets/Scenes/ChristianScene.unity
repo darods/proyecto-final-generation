@@ -438,6 +438,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5306459124735021783, guid: abb4c2432c609ac4bbe7b4fb1a9ddd2b,
+        type: 3}
+      propertyPath: isAsleep
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb4c2432c609ac4bbe7b4fb1a9ddd2b, type: 3}
 --- !u!1001 &260373948
@@ -4530,6 +4535,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1102819070622715249, guid: dc291e72b303d4647b0e740aa98c7ca7,
+        type: 3}
+      propertyPath: maxComplete
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102819070622715249, guid: dc291e72b303d4647b0e740aa98c7ca7,
+        type: 3}
+      propertyPath: buttonSmash1
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 1102819070622715249, guid: dc291e72b303d4647b0e740aa98c7ca7,
+        type: 3}
+      propertyPath: buttonSmash2
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 1663764456198822715, guid: dc291e72b303d4647b0e740aa98c7ca7,
         type: 3}
       propertyPath: launchForce
