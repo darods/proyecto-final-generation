@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     private State state;
     private float waitingToStarTimer = 1f;
-    private float countdownToStarTimer = 3f;
+    private float countdownToStarTimer = 5f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 1200f;
+    private float gamePlayingTimerMax = 150f;
 
     private bool gamePaused = false;
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (gamePaused)
             {

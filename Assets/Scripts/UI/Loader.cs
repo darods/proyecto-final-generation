@@ -12,6 +12,7 @@ public static class Loader
         LevelSelector,
         LoadingScene,
         FirstLevel,
+        FourthMap,
 
     }
     private static Scene targetScene;
