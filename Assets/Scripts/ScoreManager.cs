@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     private const string ScoreKey = "PlayerScore";
     private int playerScore = 0;
+    private const string Level1CompletedKey = "Level1Completed";
     public static ScoreManager Instance { get; private set; }
 
 
@@ -27,17 +28,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        // Cargar el puntaje guardado al inicio del juego
-        playerScore = PlayerPrefs.GetInt(ScoreKey, 0);
-    }
 
     public void AddPoints(int points)
     {
         playerScore += points;
         // Guardar el puntaje actual
-        SaveScore();
     }
 
     public void DeductPoints(int points)
@@ -70,14 +65,24 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int amount)
     {
         playerScore += amount;
-        if (playerScore >= 50)
+
+        // Verifica si el jugador ha alcanzado el puntaje requerido para completar el nivel 1
+        if (playerScore >= 10)
         {
+            PlayerPrefs.SetInt(Level1CompletedKey, 1);
+            PlayerPrefs.Save();
             levelPassed = true;
         }
     }
 
+    public bool IsLevel1Completed()
+    {
+        return PlayerPrefs.GetInt(Level1CompletedKey, 0) == 1;
+    }
     public bool LevelPassed()
     {
+        Debug.Log("level pasado: " + levelPassed);
         return levelPassed;
     }
+   
 }

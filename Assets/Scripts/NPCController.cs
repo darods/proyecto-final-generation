@@ -149,7 +149,7 @@ public class NPCController : Subject
         currentOrder = null;
         orderTimeout = 0;
         ScoreManager.instance.DeductPoints(5);
-        //Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
+        Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
 
 
     }
@@ -162,7 +162,7 @@ public class NPCController : Subject
             currentOrder = null;
             orderTimeout = 0;
             RestoreVisual();
-            ScoreManager.instance.AddPoints(10);
+            ScoreManager.instance.IncreaseScore(10);
             Notify(Actions.AddPoints);
             // Imprimir el puntaje actual en la consola
             Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());

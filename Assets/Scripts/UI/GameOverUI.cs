@@ -3,13 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI recipesDeliveredText;
     [SerializeField] private TextMeshProUGUI youWinLoseText;
+    [SerializeField] private Button button;
 
 
+    private void Awake()
+    {
+        button.onClick.AddListener(() =>
+            {
+                Loader.Load(Loader.Scene.LevelSelector);
+            });
+    }
 
     private void Start()
     {
