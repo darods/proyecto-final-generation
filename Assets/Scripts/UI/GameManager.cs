@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
- 
-    public static GameManager Instance { get; private set;}
+
+    public static GameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
+
+    private PlayerController playerController;
 
     private enum State
     {
@@ -22,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     private State state;
     private float waitingToStarTimer = 1f;
-    private float countdownToStarTimer= 3f;
+    private float countdownToStarTimer = 3f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 10f;
+    private float gamePlayingTimerMax = 1200f;
 
     private bool gamePaused = false;
 
@@ -33,6 +35,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         state = State.WaitingToStart;
+    }
+
+    private void Start()
+    {
+        GameObject player = GameObject.Find("Player2");
+
+        playerController = player.GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -49,8 +58,6 @@ public class GameManager : MonoBehaviour
                 PausedGame();
             }
         }
-
-
         switch (state)
         {
             case State.WaitingToStart:
@@ -58,6 +65,8 @@ public class GameManager : MonoBehaviour
                 if (waitingToStarTimer < 0f)
                 {
                     state = State.CountdownToStart;
+                    ChangePlayerState(false);
+
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
@@ -67,6 +76,8 @@ public class GameManager : MonoBehaviour
                 if (countdownToStarTimer < 0f)
                 {
                     state = State.GamePlaying;
+                    ChangePlayerState(true);
+
                     gamePlayingTimer = gamePlayingTimerMax;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
 
@@ -78,39 +89,45 @@ public class GameManager : MonoBehaviour
                 if (gamePlayingTimer < 0f)
                 {
                     state = State.GameOver;
+                    ChangePlayerState(false);
+
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
 
                 }
                 break;
 
             case State.GameOver:
+                ChangePlayerState(false);
+
                 break;
         }
-
         Debug.Log(state);
-
     }
 
 
-    public bool IsGamePlaying(){
+    public bool IsGamePlaying()
+    {
         return state == State.GamePlaying;
     }
 
-    public bool IsCountdownToStartActive(){
+    public bool IsCountdownToStartActive()
+    {
         return state == State.CountdownToStart;
     }
 
-    public float GetCountdownToStartTimer(){
+    public float GetCountdownToStartTimer()
+    {
         return countdownToStarTimer;
     }
 
-    public bool IsGameOver(){
+    public bool IsGameOver()
+    {
         return state == State.GameOver;
     }
 
     public void PausedGame()
     {
-        Time.timeScale = 0; 
+        Time.timeScale = 0;
         gamePaused = true;
         OnGamePaused?.Invoke(this, EventArgs.Empty);
     }
@@ -123,8 +140,14 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public float GetGamePlayingTimerNormalized(){
+    public float GetGamePlayingTimerNormalized()
+    {
         return 1 - (gamePlayingTimer / gamePlayingTimerMax);
+    }
+
+    public void ChangePlayerState(bool newState)
+    {
+        playerController.SetPlayerState(newState);
     }
 
 }

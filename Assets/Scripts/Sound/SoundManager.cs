@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioClipRefSO audioClipRefSO;
 
-    private float volume = 1f;
+    private float volume = 15f;
 
     public static SoundManager Instance { get; private set; }
 
@@ -20,23 +20,23 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        GamePauseUI.Instance.OnResumeSound += GamePauseUI_OnResumeSound;
+        NPCController.Instance.OnOrderDeliveredSound += NPCController_OnOrderDelivered;
+        Debug.Log("Volumen :" + volume);
     }
 
-    private void GamePauseUI_OnResumeSound(object sender, EventArgs e)
+    private void NPCController_OnOrderDelivered(object sender, EventArgs e)
     {
-        GamePauseUI gamePauseUI = GamePauseUI.Instance;
-        PlaySound(audioClipRefSO.deliveryFail, gamePauseUI.transform.position);
-
+        NPCController nPCController = NPCController.Instance;
+        PlaySound(audioClipRefSO.deliveryFail, nPCController.transform.position);
     }
 
 
-    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
+    public void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
-    private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplayer = 1f)
+    public void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplayer = 1f)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volumeMultiplayer * volume);
     }

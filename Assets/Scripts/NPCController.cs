@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using System;
 
 public class NPCController : Subject
 {
@@ -29,6 +30,14 @@ public class NPCController : Subject
     [Header("Visual Model")]
     [SerializeField] private Animator modelAnimator;
 
+    public event EventHandler OnOrderDeliveredSound;
+    public static NPCController Instance { get; private set; }
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         orderManager = OrderManager.Instance;
@@ -95,6 +104,12 @@ public class NPCController : Subject
         ResetOrderTimer();
     }
 
+    public void StopMakingOrders()
+    {
+        canMakeOrders = false;
+        ResetOrderTimer();
+    }
+
     private void MakeOrder()
     {
         if (assignedSeat != null && currentOrder == null && assignedSeat.isOccupied)
@@ -134,7 +149,7 @@ public class NPCController : Subject
         currentOrder = null;
         orderTimeout = 0;
         ScoreManager.instance.DeductPoints(5);
-        Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
+        //Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
 
 
     }
@@ -151,6 +166,8 @@ public class NPCController : Subject
             Notify(Actions.AddPoints);
             // Imprimir el puntaje actual en la consola
             Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
+            OnOrderDeliveredSound?.Invoke(this, EventArgs.Empty);
+
             return true;
         }
         else
