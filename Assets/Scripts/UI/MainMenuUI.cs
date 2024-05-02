@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button PlayButtonPlayer1;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button configurationButton;
 
@@ -18,7 +18,7 @@ public class MainMenuUI : MonoBehaviour
         tuto = GameObject.FindGameObjectWithTag("TutoPnl");
         tuto.SetActive(false);
 
-        playButton.onClick.AddListener(() =>
+        PlayButtonPlayer1.onClick.AddListener(() =>
         {
             Loader.Load(Loader.Scene.GameScene);
         });
