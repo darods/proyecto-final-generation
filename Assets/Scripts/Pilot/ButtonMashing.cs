@@ -1,96 +1,88 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonMashing : MonoBehaviour
 {
-    [SerializeField] float mashDelay = .5f;
-    float mash;
+    public delegate void GameEndCallback(bool isWin);
+    public event GameEndCallback OnGameEnd;
+    [SerializeField] float mashDelay = 0.5f;
+    float mashTimer;
     bool pressed;
     bool started;
-
     float complete = 0;
     [SerializeField] float maxComplete;
-    [SerializeField] private string buttonSmash1;
-    [SerializeField] private string buttonSmash2;
-    private string buttonSelected;
-    private bool win;
+    [SerializeField] private KeyCode buttonSmash1;
+    [SerializeField] private KeyCode buttonSmash2;
+    private KeyCode buttonSelected;
+    private bool isWin;
     private UiExample ui;
+
     void Start()
     {
-        mash = mashDelay;
+        mashTimer = mashDelay;
         buttonSelected = buttonSmash2;
         ui = UiExample.instance;
     }
+
     void Update()
     {
         MashingButton();
     }
 
-    public bool StartButtonMashWithDelay(float delay)
+    public void StartGame()
     {
-        StartCoroutine(StartWithDelay(delay));
-        return win;
-    }
-    private IEnumerator StartWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        StartButtonMash();
-    }
-    public void StartButtonMash()
-    {
-        ui.ButtonSmash();
         started = true;
-
+        ui.ButtonSmash();
     }
+
     private void EndGame()
     {
         ui.ResetUISmash();
-        complete = 0;
         started = false;
-        
+        isWin = (complete >= maxComplete);
+        complete = 0;
+        OnGameEnd?.Invoke(isWin); // Activar el evento OnGameEnd con el resultado del juego
     }
+
+    private void DetectMash(KeyCode button)
+    {
+        if (Input.GetKeyDown(button) && !pressed)
+        {
+            ui.ButtonStar();
+            complete++;
+            pressed = true;
+            mashTimer = mashDelay;
+        }
+        else if (Input.GetKeyUp(button))
+        {
+            ui.ButtonSmash();
+            buttonSelected = buttonSelected != buttonSmash1 ? buttonSmash1 : buttonSmash2;
+            pressed = false;
+        }
+    }
+
     private void MashingButton()
     {
         if (started)
         {
-
-            mash -= Time.deltaTime;
+            mashTimer -= Time.deltaTime;
             DetectMash(buttonSelected);
             if (complete >= maxComplete)
             {
                 Debug.Log("WIN");
-                win = true;
                 EndGame();
             }
-            else if (mash <= 0)
+            else if (mashTimer <= 0)
             {
                 Debug.Log("LOSE");
                 EndGame();
             }
         }
     }
-    private void DetectMash(string button)
+
+    public bool GetWin()
     {
-
-
-        if (Input.GetButtonDown(button) && !pressed)
-        {
-            ui.ButtonStar();
-            complete++;
-            pressed = true;
-            mash = mashDelay;
-
-        }
-        else if (Input.GetButtonUp(button))
-        {
-            ui.ButtonSmash();
-
-            buttonSelected = buttonSelected != buttonSmash1 ? buttonSmash1 : buttonSmash2;
-            pressed = false;
-        }
+        return isWin;
     }
-
-
 }

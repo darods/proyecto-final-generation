@@ -9,11 +9,8 @@ public class PlayerController : MonoBehaviour
         [SerializeField] private float _moveSpeed, _currentSpeed, rotationSpeed ;
         private Rigidbody rb;
         private Vector3 playerMovementInput;
-
         private Animator anim;
-        private float movementX;
-        private float movementY;
-        
+
         [SerializeField] bool isMove = true;
     [Header("Dash Settings")]
     [Space]
@@ -36,8 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _currentSpeed = _moveSpeed;
         isDashing = false;
-        movementX = 0;
-        movementY = 0;
+        
 }
     void Update()
     {
