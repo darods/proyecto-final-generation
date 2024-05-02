@@ -32,7 +32,7 @@ public class Flag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         OnClick.Invoke();
         Test("OnPointerClick");
-        Loader.Load(Loader.Scene.ScoreManagerScene);
+        Loader.Load(Loader.Scene.FirstLevel);
 
     }
 
