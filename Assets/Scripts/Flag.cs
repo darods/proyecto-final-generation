@@ -55,7 +55,7 @@ public class Flag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                     Loader.Load(Loader.Scene.FirstLevel);
                     break;
                 case "Flag2":
-                    Loader.Load(Loader.Scene.FourthMap);
+                    Loader.Load(Loader.Scene.SecondLevel);
                     break;
                 default:
                     Debug.LogWarning("Objeto desconocido: " + clickedObjectName);
