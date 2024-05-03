@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Pilot : Subject
 {
@@ -42,8 +41,9 @@ public class Pilot : Subject
     {
         while (isAsleep)
         {
-            Notify(Actions.RemovePoints); 
+            Notify(Actions.RemovePoints);
             yield return new WaitForSeconds(1);
+            ScoreManager.instance.DeductPoints(5);
         }
     }
 
