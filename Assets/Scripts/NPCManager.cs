@@ -68,12 +68,12 @@ public class NPCManager : MonoBehaviour
                     GameObject npc;
                     if (spawnLeftNext)
                     {
-                        npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.NPC, leftSpawnPosition.position, leftSpawnPosition.rotation);
+                        npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.MaleNPC, leftSpawnPosition.position, leftSpawnPosition.rotation);
                         spawnLeftNext = false;
                     }
                     else
                     {
-                        npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.NPC, rightSpawnPosition.position, rightSpawnPosition.rotation);
+                        npc = ObjectPooler.Instance.SpawnFromPool(ObjectPooler.ObjectsToSpawn.FemaleNPC, rightSpawnPosition.position, rightSpawnPosition.rotation);
                         spawnLeftNext = true;
                     }
                     seatRow.SetSeat(npc.GetComponent<NPCController>());
