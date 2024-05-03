@@ -16,8 +16,8 @@ public class EarthController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         secondLevel.SetActive(false);
         thirdLevel.SetActive(false);
-
-        if (PlayerPrefs.GetInt("Level1Completed") == 1)
+        Debug.Log(PlayerPrefs.GetInt("Level1Completed"));
+        if (PlayerPrefs.GetInt("Level1Completed") == 2)
         {
             secondLevel.SetActive(true);
         }
