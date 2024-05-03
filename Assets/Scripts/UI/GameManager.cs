@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.Find("Player2");
+        GameObject player = GameObject.Find("Player1");
 
         playerController = player.GetComponent<PlayerController>();
     }
