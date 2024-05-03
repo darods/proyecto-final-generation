@@ -23,14 +23,15 @@ public class ObjectPooler : MonoBehaviour
 
     public enum ObjectsToSpawn
     {
-        NPC,
+        MaleNPC,
+        FemaleNPC,
         Coffe,
         Chocolate,
         Soda,
-        Sandwish,
+        Sandwich,
         MenuCookie,
         MenuPizza,
-        MenuSandwish,
+        MenuSandwich,
         MenuSoda,
         MenuSteak
     }

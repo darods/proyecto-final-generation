@@ -12,7 +12,6 @@ public class GamePauseUI : MonoBehaviour
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button optionsButton;
 
-    public event EventHandler OnResumeSound;
 
     public static GamePauseUI Instance { get; private set; }
 
@@ -23,7 +22,6 @@ public class GamePauseUI : MonoBehaviour
         resumeButton.onClick.AddListener(() =>
         {
             GameManager.Instance.UnpasuedGame();
-            OnResumeSound?.Invoke(this, EventArgs.Empty);
 
         });
 

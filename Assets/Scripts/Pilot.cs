@@ -6,7 +6,7 @@ public class Pilot : Subject
 {
     [SerializeField] private GameObject sleepingImage;
 
-    private bool isAsleep = false;
+    [SerializeField] bool isAsleep = false;
     private Coroutine DelaySleepCoroutine;
     private Coroutine SleepingCoroutine;
 

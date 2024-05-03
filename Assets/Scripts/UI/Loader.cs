@@ -11,7 +11,8 @@ public static class Loader
         MainMenuScene,
         LevelSelector,
         LoadingScene,
-        ScoreManagerScene,
+        FirstLevel,
+        FourthMap,
 
     }
     private static Scene targetScene;

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button PlayButtonSinglePlayer;
+    [SerializeField] private Button PlayButtonMutliPlayer;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button configurationButton;
 
@@ -18,10 +19,18 @@ public class MainMenuUI : MonoBehaviour
         tuto = GameObject.FindGameObjectWithTag("TutoPnl");
         tuto.SetActive(false);
 
-        playButton.onClick.AddListener(() =>
+        PlayButtonSinglePlayer.onClick.AddListener(() =>
         {
-            Loader.Load(Loader.Scene.ScoreManagerScene);
+            PlayerPrefs.SetInt("NumberOfPlayers",1);
+            Loader.Load(Loader.Scene.LevelSelector);
         });
+        PlayButtonMutliPlayer.onClick.AddListener(() =>
+        {
+            PlayerPrefs.SetInt("NumberOfPlayers", 2);
+            Loader.Load(Loader.Scene.LevelSelector);
+        });
+
+
         quitButton.onClick.AddListener(() =>
         {
             Application.Quit();
@@ -32,7 +41,7 @@ public class MainMenuUI : MonoBehaviour
             
         });
 
-        Debug.Log("Puntaje actual Main Menu: " + ScoreManager.instance.GetScore());
+        //Debug.Log("Puntaje actual Main Menu: " + ScoreManager.instance.GetScore());
 
         Time.timeScale = 1f;
     }

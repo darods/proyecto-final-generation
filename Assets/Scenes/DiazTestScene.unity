@@ -2288,8 +2288,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440402456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.57574, y: 0.57574, z: 0.57574}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1157540756}
@@ -2297,8 +2297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: -0.95, y: -0.65}
+  m_SizeDelta: {x: 61.0258, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440402458
 MonoBehaviour:
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 440402459}
   xMovement: 0
-  yMovement: 0.02
+  yMovement: 0.05
 --- !u!114 &440402459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 056dc2d563421d147b4bc71fb1a69abf, type: 3}
+  m_Texture: {fileID: 2800000, guid: ce114d7824fb9fa42ab9ec2e1cda5bf9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4405,6 +4405,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5562294025464064683, guid: bf987b89ecdb5ea4e9f690af280f8560,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf987b89ecdb5ea4e9f690af280f8560, type: 3}
 --- !u!1 &1044970490
@@ -5000,7 +5005,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.041666668
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 704890bb31f11a6408e00f6df29f5795, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9a769db7afd6d7842b9952029ba8b085, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1327188381
 GameObject:

@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-
 
 public interface IInteractable
 {
@@ -13,7 +10,7 @@ public interface IInteractable
 public class GetObject : MonoBehaviour
 {
     [Header("Player Settings")]
-    [SerializeField] private PlayerController player; 
+    [SerializeField] private PlayerController player;
 
     [Header("Interact Settings")]
     [Space]
@@ -23,34 +20,35 @@ public class GetObject : MonoBehaviour
     private Rigidbody rbObject;
     private GameObject pickedObject = null;
     private Vector3 offset;
+    ButtonMashing buttonMash;
     [SerializeField] private string interactName;
 
     [Header("Launch Settings")]
     [SerializeField] private float launchForce = 4f;
     [SerializeField] private float _maxLaunchTime = 4f;
     private float _launchTimer = 0f;
-
     private bool isHolding = false;
 
+    public delegate void GameEndCallback(bool isWin);
+    public event GameEndCallback OnGameEnd;
+
+    private Pilot pilotObj ;
     private void Start()
     {
-        
+        buttonMash = GetComponentInParent<ButtonMashing>();
         pickUpLayer = LayerMask.NameToLayer("PickUpLayer");
         objectsLayer = LayerMask.NameToLayer("Objects");
         offset = new Vector3(0.00300000003f, -0.125f, 1.01800001f);
     }
+
     void Update()
     {
         CheckPressed();
         CheckForInteractions();
-        QuickTime ();
-
     }
 
     private void CheckForInteractions()
     {
-        Debug.Log("intectact state: " + Input.GetButtonDown(interactName));
-        //TODO: CORREGIR SOLTAR LANZAR COGER Y ENTREGAR
         if (Input.GetButtonDown(interactName))
         {
             RaycastHit _hit;
@@ -60,36 +58,31 @@ public class GetObject : MonoBehaviour
 
                 if (!pickedObject)
                 {
-                    
-                     if (gameObjectColision.TryGetComponent(out Pilot pilot))
+                    if (gameObjectColision.TryGetComponent(out Pilot pilot))
                     {
-                        QuickTime();
-                        // Order order = pickedObject.GetComponent<Order>();
-                        bool quicktimeEvent = true;
-                        if (quicktimeEvent){
-                            pilot.WakeUp();
+                        pilotObj = pilot;
+                        if (pilot.IsAsleep())
+                        {
+                            
+                            buttonMash.StartGame();
+                            buttonMash.OnGameEnd += HandleGameEnd;
                         }
-                        
-                    }else{
+                    }
+                    else
+                    {
                         GameObject Object;
                         if (gameObjectColision.TryGetComponent(out IInteractable interactObj))
                         {
-                            // COGER SPAWN
                             Debug.Log("coger spawn");
                             Object = interactObj.Interact();
                         }
                         else
                         {
-                            // COGER PISO
                             Debug.Log("coger piso");
                             Object = _hit.collider.gameObject;
                         }
                         PickUpObject(Object);
                     }
-
-                    
-                    
-
                 }
                 else
                 {
@@ -100,24 +93,21 @@ public class GetObject : MonoBehaviour
                         pickedObject.SetActive(false);
                         Lanzar();
                     }
-                    
                 }
                 return;
-
             }
             isHolding = true;
-
         }
+
         if (Input.GetButtonUp(interactName) && pickedObject && isHolding)
         {
-            
-            //LANZAR
             Debug.Log("Lanzar");
             Lanzar();
             isHolding = false;
             _launchTimer = 0.0f;
         }
     }
+
     private void PickUpObject(GameObject obj)
     {
         rbObject = obj.GetComponent<Rigidbody>();
@@ -130,8 +120,8 @@ public class GetObject : MonoBehaviour
             pickedObject.layer = pickUpLayer;
             pickedObject.transform.localPosition = offset;
         }
-
     }
+
     private void Lanzar()
     {
         Vector3 direccionLanzamiento = transform.up + transform.forward;
@@ -144,9 +134,8 @@ public class GetObject : MonoBehaviour
         pickedObject.layer = objectsLayer;
         pickedObject = null;
         rbObject = null;
-
-
     }
+
     private void CheckPressed()
     {
         if (Input.GetButton(interactName) && pickedObject != null)
@@ -155,33 +144,14 @@ public class GetObject : MonoBehaviour
             _launchTimer = _maxLaunchTime;
     }
 
-
-
-
-public KeyCode key1; // Definir las teclas desde el Inspector
-public KeyCode key2;
-
-private bool pressKey1 = false; // Indicar si se ha presionado la primera tecla
-private bool pressKey2 = true   ; // Indicar si se ha presionado la segunda tecla
-private int complete = 0; // Contador de éxitos
-
-public void QuickTime()
-{
-    
-    
-    if (Input.GetKeyDown(key1) && pressKey2) 
+    void HandleGameEnd(bool isWin)
     {
-        pressKey1 = true;
-        pressKey2 = false;
-        complete += 10;
+        buttonMash.OnGameEnd -= HandleGameEnd;
+        if (isWin)
+        {
+            pilotObj.WakeUp();
+            Debug.Log("El jugador ganó");
+        }
+      
     }
-    else if (Input.GetKeyDown(key2) && pressKey1) 
-    {
-        pressKey1 = false;
-        pressKey2 = true;
-        complete += 10 ;
-    }
-
-    Debug.Log("Puntos: " + complete);
-}
 }

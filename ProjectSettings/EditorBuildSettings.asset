@@ -15,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScene.unity
     guid: b6b73dd9a53a4614daff3d82edc3435f
   - enabled: 1
-    path: Assets/Scenes/ScoreManagerScene.unity
-    guid: 33d9f2e9b194f714aabc1242ea9597c7
-  - enabled: 0
-    path: Assets/Scenes/SecondMapDesing.unity
-    guid: b1ea5b0131a773e43a7721eb6b15bef8
+    path: Assets/Scenes/FirstLevel.unity
+    guid: 1691729bb2a38634db1b5bc3bceaaef6
+  - enabled: 1
+    path: Assets/Scenes/FourthMap.unity
+    guid: 24872a5a9310d41479f3c7e7c55d1097
   m_configObjects: {}
