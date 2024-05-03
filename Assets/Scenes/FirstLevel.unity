@@ -4541,6 +4541,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5774862081220556410, guid: 08e547c8a04e43145b4ddd1e9c4f045d,
+        type: 3}
+      propertyPath: m_text
+      value: 'Press " Esc " to pause game u others options
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774862081220556410, guid: 08e547c8a04e43145b4ddd1e9c4f045d,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774862081586343773, guid: 08e547c8a04e43145b4ddd1e9c4f045d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -239.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774862081586343773, guid: 08e547c8a04e43145b4ddd1e9c4f045d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -370.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08e547c8a04e43145b4ddd1e9c4f045d, type: 3}
 --- !u!1 &1860934487
