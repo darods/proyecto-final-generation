@@ -12,9 +12,9 @@ public class ButtonMashing : MonoBehaviour
     bool started;
     float complete = 0;
     [SerializeField] float maxComplete;
-    [SerializeField] private KeyCode buttonSmash1;
-    [SerializeField] private KeyCode buttonSmash2;
-    private KeyCode buttonSelected;
+    [SerializeField] private string buttonSmash1;
+    [SerializeField] private string buttonSmash2;
+    private string buttonSelected;
     private bool isWin;
     private UiExample ui;
 
@@ -50,16 +50,16 @@ public class ButtonMashing : MonoBehaviour
          // Activar el evento OnGameEnd con el resultado del juego
     }
 
-    private void DetectMash(KeyCode button)
+    private void DetectMash(string button)
     {
-        if (Input.GetKeyDown(button) && !pressed)
+        if (Input.GetButtonDown(button) && !pressed)
         {
             ui.ButtonStar();
             complete++;
             pressed = true;
             mashTimer = mashDelay;
         }
-        else if (Input.GetKeyUp(button))
+        else if (Input.GetButtonUp(button))
         {
             ui.ButtonSmash();
             buttonSelected = buttonSelected != buttonSmash1 ? buttonSmash1 : buttonSmash2;

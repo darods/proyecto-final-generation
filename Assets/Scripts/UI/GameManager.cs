@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,9 +11,14 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
 
-    private PlayerController playerController;
+    [Header("Players")]
+    [SerializeField] private PlayerSpawn playerSpawn;
+    [SerializeField] private PlayerController player1Controller;
+    [SerializeField] private PlayerController player2Controller;
 
-    public GameObject playerPrefab; // Asigna el prefab del jugador desde el inspector
+    [Header("Pilot")]
+    [SerializeField] private Pilot pilot;
+
 
     private enum State
     {
@@ -28,7 +32,7 @@ public class GameManager : MonoBehaviour
     private float waitingToStarTimer = 1f;
     private float countdownToStarTimer = 5f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 6f;
+    private float gamePlayingTimerMax = 150f;
 
     private bool gamePaused = false;
 
@@ -41,11 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Instancia el jugador desde el prefab
-        //GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-
-        // Obtén el componente PlayerController del jugador
-        playerController = playerPrefab.GetComponent<PlayerController>();
+        StartCoroutine(WaitToGetPlayersInScene());
     }
 
     private void Update()
@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
                 if (countdownToStarTimer < 0f)
                 {
                     state = State.GamePlaying;
+                    pilot.StartSleepDelay();
                     ChangePlayerState(true);
 
                     gamePlayingTimer = gamePlayingTimerMax;
@@ -151,7 +152,20 @@ public class GameManager : MonoBehaviour
 
     public void ChangePlayerState(bool newState)
     {
-        playerController.SetPlayerState(newState);
+        if (player1Controller != null)
+        {
+            player1Controller.SetPlayerState(newState);
+        }
+        if (player2Controller != null)
+        {
+            player2Controller.SetPlayerState(newState);
+        }
     }
 
+    private IEnumerator WaitToGetPlayersInScene()
+    {
+        yield return new WaitForSeconds(1);
+        player1Controller = playerSpawn.ReturnPlayer1Spawned();
+        player2Controller = playerSpawn.ReturnPlayer2Spawned();
+    }
 }

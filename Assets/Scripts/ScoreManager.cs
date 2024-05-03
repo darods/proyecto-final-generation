@@ -67,7 +67,7 @@ public class ScoreManager : MonoBehaviour
         playerScore += amount;
 
         // Verifica si el jugador ha alcanzado el puntaje requerido para completar el nivel 1
-        if (playerScore >= 10)
+        if (playerScore >= 300)
         {
             PlayerPrefs.SetInt(Level1CompletedKey, 1);
             PlayerPrefs.Save();
