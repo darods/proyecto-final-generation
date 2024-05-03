@@ -28,10 +28,10 @@ public class ObjectPooler : MonoBehaviour
         Coffe,
         Chocolate,
         Soda,
-        Sandwish,
+        Sandwich,
         MenuCookie,
         MenuPizza,
-        MenuSandwish,
+        MenuSandwich,
         MenuSoda,
         MenuSteak
     }

@@ -11,7 +11,7 @@ public class GameManagerTarget : MonoBehaviour
     private ObjectPooler.ObjectsToSpawn[] menuItemsToSpawn = {
         ObjectPooler.ObjectsToSpawn.MenuCookie,
         ObjectPooler.ObjectsToSpawn.MenuPizza,
-        ObjectPooler.ObjectsToSpawn.MenuSandwish,
+        ObjectPooler.ObjectsToSpawn.MenuSandwich,
         ObjectPooler.ObjectsToSpawn.MenuSoda,
         ObjectPooler.ObjectsToSpawn.MenuSteak
     };
