@@ -30,4 +30,10 @@ public class MusicManager : MonoBehaviour
     {
         return volume;
     }
+
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
 }
