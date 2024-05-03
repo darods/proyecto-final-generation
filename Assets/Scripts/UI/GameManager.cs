@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Instancia el jugador desde el prefab
-        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        //GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
         // Obtén el componente PlayerController del jugador
-        playerController = player.GetComponent<PlayerController>();
+        playerController = playerPrefab.GetComponent<PlayerController>();
     }
 
     private void Update()
