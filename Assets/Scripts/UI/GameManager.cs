@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerController;
 
+    public GameObject playerPrefab; // Asigna el prefab del jugador desde el inspector
+
     private enum State
     {
         WaitingToStart,
@@ -39,8 +41,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.Find("Player1");
+        // Instancia el jugador desde el prefab
+        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
 
+        // Obtén el componente PlayerController del jugador
         playerController = player.GetComponent<PlayerController>();
     }
 
