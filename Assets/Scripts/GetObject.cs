@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class GetObject : MonoBehaviour
     private int pickUpLayer, objectsLayer;
     private Rigidbody rbObject;
     private GameObject pickedObject = null;
-    private Vector3 offset;
+    [SerializeField] private Vector3 offset;
     ButtonMashing buttonMash;
     [SerializeField] private string interactName;
 
@@ -28,6 +29,8 @@ public class GetObject : MonoBehaviour
     [SerializeField] private float _maxLaunchTime = 4f;
     private float _launchTimer = 0f;
     private bool isHolding = false;
+    [SerializeField ] private float maxDelayTimer = 2f; 
+    private float currentDelayTimer; 
 
     public delegate void GameEndCallback(bool isWin);
     public event GameEndCallback OnGameEnd;
@@ -38,7 +41,9 @@ public class GetObject : MonoBehaviour
         buttonMash = GetComponentInParent<ButtonMashing>();
         pickUpLayer = LayerMask.NameToLayer("PickUpLayer");
         objectsLayer = LayerMask.NameToLayer("Objects");
-        offset = new Vector3(0.00300000003f, -0.125f, 1.01800001f);
+        offset = new Vector3(0f ,-0.00899999961f ,0.536000013f );
+        currentDelayTimer = maxDelayTimer;
+        
     }
 
     void Update()
@@ -52,7 +57,9 @@ public class GetObject : MonoBehaviour
         if (Input.GetButtonDown(interactName))
         {
             RaycastHit _hit;
-            if (Physics.BoxCast(transform.position, transform.lossyScale / 2, transform.forward, out _hit, transform.rotation, interactRange, layerObject))
+            Transform parent = transform.parent;
+            
+            if (Physics.BoxCast(transform.position, parent.localScale /2 , transform.forward, out _hit, parent.rotation, interactRange, layerObject))
             {
                 GameObject gameObjectColision = _hit.collider.gameObject;
 
@@ -99,20 +106,28 @@ public class GetObject : MonoBehaviour
             isHolding = true;
         }
 
-        if (Input.GetButtonUp(interactName) && pickedObject && isHolding)
+         if (currentDelayTimer > 0f)
+        {
+            currentDelayTimer -= Time.deltaTime;
+        }
+
+
+        if (Input.GetButtonUp(interactName) && pickedObject && isHolding && currentDelayTimer <= 0)
         {
             Debug.Log("Lanzar");
             Lanzar();
             isHolding = false;
             _launchTimer = 0.0f;
+            currentDelayTimer = maxDelayTimer;
         }
     }
 
     private void PickUpObject(GameObject obj)
     {
-        rbObject = obj.GetComponent<Rigidbody>();
+            rbObject = obj.GetComponent<Rigidbody>();
         if (rbObject != null)
         {
+            Debug.Log("aqui almenos llega");
             rbObject.useGravity = false;
             rbObject.isKinematic = true;
             pickedObject = obj;
@@ -153,5 +168,26 @@ public class GetObject : MonoBehaviour
             Debug.Log("El jugador ganó");
         }
       
+    }
+
+
+     private void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        Transform parent = transform.parent;
+
+        if (Physics.BoxCast(transform.position, parent.localScale/2 , transform.forward, out hit, parent.rotation, interactRange))
+        {
+            // Se ha golpeado algo, puedes usar 'hit' para obtener información sobre el golpe.
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.forward * interactRange);
+            Gizmos.DrawWireCube(transform.position + transform.forward * hit.distance, parent.localScale);
+        }
+        else
+        {
+            // No se ha golpeado nada, dibujar solo el rayo
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, transform.forward * interactRange);
+        }
     }
 }
