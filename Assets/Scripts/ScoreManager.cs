@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -75,10 +73,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public bool IsLevel1Completed()
+    public void MarkLevelCompleted(int levelNumber)
     {
-        return PlayerPrefs.GetInt(Level1CompletedKey, 0) == 1;
+        PlayerPrefs.SetInt($"Level{levelNumber}Completed", 2);
+        PlayerPrefs.Save();
     }
+
     public bool LevelPassed()
     {
         Debug.Log("level pasado: " + levelPassed);

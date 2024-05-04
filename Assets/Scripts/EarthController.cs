@@ -16,7 +16,7 @@ public class EarthController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         secondLevel.SetActive(false);
         thirdLevel.SetActive(false);
-        Debug.Log(PlayerPrefs.GetInt("Level1Completed"));
+        //Debug.Log(PlayerPrefs.GetInt("Level1Completed"));
         if (PlayerPrefs.GetInt("Level1Completed") == 2)
         {
             secondLevel.SetActive(true);
@@ -61,11 +61,5 @@ public class EarthController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerUp(PointerEventData eventData)
     {
         isRotating = false;
-    }
-
-    public void MarkLevelCompleted(int levelNumber)
-    {
-        PlayerPrefs.SetInt($"Level{levelNumber}Completed", 1);
-        PlayerPrefs.Save();
     }
 }

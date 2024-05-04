@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +8,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI recipesDeliveredText;
     [SerializeField] private TextMeshProUGUI youWinLoseText;
     [SerializeField] private Button button;
+    [SerializeField] private int currentLevel;
 
 
     private void Awake()
@@ -58,6 +57,7 @@ public class GameOverUI : MonoBehaviour
 
             if (ScoreManager.Instance.LevelPassed())
             {
+                ScoreManager.Instance.MarkLevelCompleted(currentLevel);
                 youWinLoseText.text += "YOU WIN!";
             }
             else
