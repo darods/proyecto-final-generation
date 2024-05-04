@@ -97,8 +97,11 @@ public class GetObject : MonoBehaviour
                     {
                         Order order = pickedObject.GetComponent<Order>();
                         bool receiveOrder = interactObj.ReceiveOrder(order.order);
-                        pickedObject.SetActive(false);
-                        Lanzar();
+                        if (receiveOrder)
+                        {
+                            pickedObject.SetActive(false);
+                            Lanzar();
+                        }  
                     }
                 }
                 return;
