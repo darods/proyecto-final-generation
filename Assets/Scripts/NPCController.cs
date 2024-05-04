@@ -160,7 +160,7 @@ public class NPCController : Subject
             currentOrder = null;
             orderTimeout = 0;
             RestoreVisual();
-            ScoreManager.instance.IncreaseScore(50);
+            ScoreManager.instance.IncreaseScore(100);
             Notify(Actions.AddPoints);
             // Imprimir el puntaje actual en la consola
             Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());

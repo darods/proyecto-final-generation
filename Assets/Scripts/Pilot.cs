@@ -4,8 +4,8 @@ using UnityEngine;
 public class Pilot : Subject
 {
     [SerializeField] private GameObject sleepingImage;
-
-    [SerializeField] bool isAsleep = false;
+    [SerializeField] private AudioSource pilotAudioSource;
+    bool isAsleep = false;
     private Coroutine DelaySleepCoroutine;
     private Coroutine SleepingCoroutine;
 
@@ -32,6 +32,7 @@ public class Pilot : Subject
         {
             StopCoroutine(SleepingCoroutine);
         }
+        pilotAudioSource.Play();
         SleepingCoroutine = StartCoroutine(Sleep());
         sleepingImage.SetActive(true);
         Debug.Log("Pilot has started sleeping");
@@ -42,7 +43,7 @@ public class Pilot : Subject
         while (isAsleep)
         {
             Notify(Actions.RemovePoints);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             ScoreManager.instance.DeductPoints(5);
         }
     }
@@ -54,6 +55,7 @@ public class Pilot : Subject
             isAsleep = false;
             if (DelaySleepCoroutine != null)
             {
+                pilotAudioSource.Stop();
                 StopCoroutine(SleepingCoroutine);
                 StartSleepDelay();
             }
