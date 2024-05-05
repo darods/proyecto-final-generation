@@ -28,6 +28,8 @@ public class PlayerSpawn : MonoBehaviour
         {
             player1Instance = Instantiate(player1Prefab, player1SpawnPos);
             player2Instance = Instantiate(player2Prefab, player2SpawnPos);
+            player1Instance.transform.SetParent(null);
+            player2Instance.transform.SetParent(null);
             MultiplayerTargetGroup.gameObject.SetActive(true);
 
             singlePlayerCamera.Follow = MultiplayerTargetGroup.transform;
