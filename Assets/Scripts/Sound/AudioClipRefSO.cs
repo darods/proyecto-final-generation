@@ -6,4 +6,6 @@ using UnityEngine;
 public class AudioClipRefSO : ScriptableObject
 {
     public AudioClip[] deliveryFail;
+    public AudioClip[] deliverySucces;
+    public AudioClip[] pilotSleep;
 }

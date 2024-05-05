@@ -2118,6 +2118,7 @@ MonoBehaviour:
   recipesDeliveredText: {fileID: 7836757877137444934}
   youWinLoseText: {fileID: 7836757877134944499}
   button: {fileID: 0}
+  currentLevel: 0
 --- !u!1 &7836757877425249184
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,9 @@ public class NPCController : Subject
     [Header("Visual Model")]
     [SerializeField] private Animator modelAnimator;
 
-    public event EventHandler OnOrderDeliveredSound;
+    public event EventHandler OnOrderDeliveredFailed;
+    [SerializeField] private AudioClip deliveredSuccessClip;
+    [SerializeField] private AudioClip deliveredFailedClip;
     public static NPCController Instance { get; private set; }
 
 
@@ -162,14 +164,19 @@ public class NPCController : Subject
             RestoreVisual();
             ScoreManager.instance.IncreaseScore(100);
             Notify(Actions.AddPoints);
-            // Imprimir el puntaje actual en la consola
+
+            //audio para la orden completada
+
+            SoundManager.Instance.PlaySoundFxClip(deliveredSuccessClip, transform, 1f);
+
             Debug.Log("Puntaje actual: " + ScoreManager.instance.GetScore());
-            OnOrderDeliveredSound?.Invoke(this, EventArgs.Empty);
+
 
             return true;
         }
         else
         {
+            SoundManager.Instance.PlaySoundFxClip(deliveredFailedClip, transform, 1f);
             return false;
         }
     }

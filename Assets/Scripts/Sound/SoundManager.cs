@@ -7,51 +7,28 @@ using Random = UnityEngine.Random;
 public class SoundManager : MonoBehaviour
 {
 
-    [SerializeField] private AudioClipRefSO audioClipRefSO;
-
-    private float volume = 15f;
-
     public static SoundManager Instance { get; private set; }
 
-    private void Awake()
-    {
+    [SerializeField] private AudioSource soundFXObject;
+
+    private void Awake() {
         Instance = this;
     }
 
-    private void Start()
+    public void PlaySoundFxClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
-        NPCController.Instance.OnOrderDeliveredSound += NPCController_OnOrderDelivered;
-        Debug.Log("Volumen :" + volume);
-    }
 
-    private void NPCController_OnOrderDelivered(object sender, EventArgs e)
-    {
-        NPCController nPCController = NPCController.Instance;
-        PlaySound(audioClipRefSO.deliveryFail, nPCController.transform.position);
-    }
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
 
+        audioSource.clip = audioClip;
 
-    public void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
-    {
-        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
-    }
+        audioSource.volume = volume;
 
-    public void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplayer = 1f)
-    {
-        AudioSource.PlayClipAtPoint(audioClip, position, volumeMultiplayer * volume);
-    }
+        audioSource.Play();
 
-    public void ChangeVolume()
-    {
-        volume += .1f;
-        if (volume > 1f)
-        {
-            volume = 0f;
-        }
-    }
+        float clipLength = audioSource.clip.length;
 
-    public float GetVolume()
-    {
-        return volume;
+        Destroy(audioSource.gameObject, clipLength);
+
     }
 }

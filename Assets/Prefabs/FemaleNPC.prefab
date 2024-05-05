@@ -160,6 +160,8 @@ MonoBehaviour:
   orderImage: {fileID: 7545306042810384373}
   orderTimeout: 15
   modelAnimator: {fileID: 3687146634209758026}
+  deliveredSuccessClip: {fileID: 8300000, guid: b47e2afeb0c36624e82ecebe8bd8f93a,
+    type: 3}
 --- !u!1 &7545306042810384373
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: AudioClipRefSO
   m_EditorClassIdentifier: 
   deliveryFail:
-  - {fileID: 8300000, guid: d16552482daa2814ca8d6957bbfa78f1, type: 3}
+  - {fileID: 8300000, guid: b47e2afeb0c36624e82ecebe8bd8f93a, type: 3}
+  deliverySucces: []
+  pilotSleep: []
