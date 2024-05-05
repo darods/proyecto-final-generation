@@ -162,6 +162,7 @@ MonoBehaviour:
   modelAnimator: {fileID: 6168814583339862891}
   deliveredSuccessClip: {fileID: 8300000, guid: b47e2afeb0c36624e82ecebe8bd8f93a,
     type: 3}
+  deliveredFailedClip: {fileID: 8300000, guid: 0a0c40f230ee40f4980a45eaf382de7a, type: 3}
 --- !u!1 &7545306042810384373
 GameObject:
   m_ObjectHideFlags: 0
